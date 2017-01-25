@@ -1,4 +1,6 @@
-<div id="sidebar">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<div id="sidebar" xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="http://www.thymeleaf.org">
     <div class="inner">
 
         <!-- Search -->
@@ -17,7 +19,22 @@
                 <li><a href="/"><strong>首页</strong></a></li>
                 <li><a href="blog-list"><strong>博客列表</strong></a></li>
                 <li><a href="elements.html"><strong>博客分类</strong></a></li>
+                <li>
+                    <span class="opener"><strong>博客分类</strong></span>
+                    <ul>
+                        <li><a th:href="@{'tag-blogs/'+${tag.id}}" th:each="tag:${tagList}" th:text="${tag.tagname+'('+tag.blognum}+')'">Java(12)</a></li>
+                    </ul>
+                </li>
                 <li><a href="elements.html"><strong>博客归档</strong></a></li>
+                <li>
+                    <span class="opener"><strong>博客分类</strong></span>
+                    <ul>
+                        <li><a href="#">Java(12)</a></li>
+                        <li><a href="#">数据库(1)</a></li>
+                        <li><a href="#">HTML(20)</a></li>
+                        <li><a href="#">Redis(1)</a></li>
+                    </ul>
+                </li>
                 <li><a href="elements.html"><strong>相册</strong></a></li>
                 <li><a href="elements.html"><strong>关于</strong></a></li>
             </ul>

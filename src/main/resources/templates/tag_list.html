@@ -31,34 +31,30 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>标签页</h1>
+                    <h1 th:text="${tag.tagname}"></h1>
                 </header>
 
-                <span class="image main"><img src="images/blog.png" alt=""/></span>
-                <div class="box">
-                    <div class="table-wrapper">
-                        <table>
-                            <tbody>
-                                <tr style="cursor: hand">
-                                    <td>Item1</td>
-                                    <td style="text-align: right">Ante turpidfasdfsfasdfss integer aliquet porttitor.</td>
-                                </tr>
-
-                            <a href="#">
-                                <tr>
-                                    <td>Item1</td>
-                                    <td style="text-align: right">Ante turpidfasdfsfasdfss integer aliquet porttitor.</td>
-                                </tr>
-                            </a>
-
-                            </tbody>
-                        </table>
-                    </div>
+                <div th:each="blog : ${blogList}" class="box">
+                    <h2 th:text="${blog.title}" id="content">title</h2>
+                    <p th:text="${blog.keywords}"></p>
+                    <a th:href="@{'/blog/'+${blog.id}}" class="button" target="_blank">Detail</a>
 
                 </div>
 
             </section>
-
+            <div style="margin: 0px auto">
+                <ul class="pagination" style="text-align: center">
+                    <li><span class="button disabled">Prev</span></li>
+                    <li><a href="#" class="page active">1</a></li>
+                    <li><a href="#" class="page">2</a></li>
+                    <li><a href="#" class="page">3</a></li>
+                    <li><span>&hellip;</span></li>
+                    <li><a href="#" class="page">8</a></li>
+                    <li><a href="#" class="page">9</a></li>
+                    <li><a href="#" class="page">10</a></li>
+                    <li><a href="#" class="button">Next</a></li>
+                </ul>
+            </div>
         </div>
         <div class="myfooter" th:include="footer :: #myfooter"></div>
     </div>
@@ -74,7 +70,7 @@
 <script src="/assets/js/util.js"></script>
 <!--[if lte IE 8]>
 <script src="/assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 </html>

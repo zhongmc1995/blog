@@ -6,6 +6,9 @@ package com.zhongmc.blog.domain;
 public class Tag extends BaseEntity{
     private  int id;
     private String tagname;
+    private int blognum = 0;
+    public  void setBlognum(int blognum){this.blognum = blognum;}
+    public int getBlognum(){return this.blognum;}
 
     public int getId() {
         return id;

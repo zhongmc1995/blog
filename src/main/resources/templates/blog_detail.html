@@ -31,7 +31,7 @@
                             </span>
                         </a>-->
                         <span class="label" th:each="tag:${blog.tagList}">
-							<a th:href="@{'/tag-list/'+${tag.id}}" th:text="${tag.tagname}"></a>|
+							<a th:href="@{'/tag-blogs/'+${tag.id}}" th:text="${tag.tagname}"></a>|
 						</span>
                     </li>
 
