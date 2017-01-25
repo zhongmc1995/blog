@@ -1,5 +1,7 @@
 package com.zhongmc.blog.domain;
 
+import java.util.List;
+
 /**
  * Created by ZMC on 2017/1/16.
  */
@@ -11,6 +13,9 @@ public class Blog extends BaseEntity {
     private String keywords;
     private int viewnum;
     private String tags;
+    List<Tag> tagList ;
+    public void setTagList(List<Tag> tagList){this.tagList = tagList;}
+    public List<Tag> getTagList(){return this.tagList;}
     public void setKeywords(String keywords){this.keywords = keywords;}
     public String getKeywords(){return this.keywords;}
 

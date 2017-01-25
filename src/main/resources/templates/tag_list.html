@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <!--[if lte IE 8]>
+    <script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/assets/css/ie9.css"/><![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie8.css"/><![endif]-->
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index" class="logo"><strong>Z.M.C</strong></a>
+
+            </header>
+
+            <!-- Content -->
+            <section>
+                <header class="main">
+                    <h1>标签页</h1>
+                </header>
+
+                <span class="image main"><img src="images/blog.png" alt=""/></span>
+                <div class="box">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr style="cursor: hand">
+                                    <td>Item1</td>
+                                    <td style="text-align: right">Ante turpidfasdfsfasdfss integer aliquet porttitor.</td>
+                                </tr>
+
+                            <a href="#">
+                                <tr>
+                                    <td>Item1</td>
+                                    <td style="text-align: right">Ante turpidfasdfsfasdfss integer aliquet porttitor.</td>
+                                </tr>
+                            </a>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+        <div class="myfooter" th:include="footer :: #myfooter"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" th:include="sidebar :: #sidebar"></div>
+
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
