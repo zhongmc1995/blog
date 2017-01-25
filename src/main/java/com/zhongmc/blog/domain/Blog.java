@@ -5,10 +5,17 @@ package com.zhongmc.blog.domain;
  */
 public class Blog extends BaseEntity {
     private int id;
-    private int typeid;
     private String title;
     private String content;
     private String coverpic;
+    private String keywords;
+    private int viewnum;
+    private String tags;
+    public void setKeywords(String keywords){this.keywords = keywords;}
+    public String getKeywords(){return this.keywords;}
+
+    public void   setTags(String tags){ this.tags = tags;}
+    public String getTags(){return this.tags;}
 
     public int getId() {
         return id;
@@ -18,12 +25,12 @@ public class Blog extends BaseEntity {
         this.id = id;
     }
 
-    public int getTypeid() {
-        return typeid;
+    public int getViewnum() {
+        return viewnum;
     }
 
-    public void setTypeid(int typeid) {
-        this.typeid = typeid;
+    public void setViewnum(int viewnum) {
+        this.viewnum = viewnum;
     }
 
     public String getTitle() {
@@ -50,14 +57,43 @@ public class Blog extends BaseEntity {
         this.coverpic = coverpic;
     }
 
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "id=" + id +
-                ", typeid=" + typeid +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", coverpic='" + coverpic + '\'' +
-                '}';
+    /*@Override
+    public void setCreateTime(Date createTime) {
+        super.setCreateTime(createTime);
     }
+
+    @Override
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
+
+    @Override
+    public void setCreateBy(String createBy) {
+        super.setCreateBy(createBy);
+    }
+
+    @Override
+    public String getCreateBy() {
+        return super.getCreateBy();
+    }
+
+    @Override
+    public void setUpdateTime(Date updateTime) {
+        super.setUpdateTime(updateTime);
+    }
+
+    @Override
+    public Date getUpdateTime() {
+        return super.getUpdateTime();
+    }
+
+    @Override
+    public void setUpdateBy(String updateBy) {
+        super.setUpdateBy(updateBy);
+    }
+
+    @Override
+    public String getUpdateBy() {
+        return super.getUpdateBy();
+    }*/
 }

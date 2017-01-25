@@ -24,14 +24,8 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Z.M.C</strong></a>
-                <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
-                </ul>
+                <a href="index" class="logo"><strong>Z.M.C</strong></a>
+
             </header>
 
             <!-- Content -->
@@ -43,14 +37,10 @@
                 <span class="image main"><img src="images/blog.png" alt=""/></span>
                 <div th:each="blog : ${blogList}" class="box">
                     <h2 th:text="${blog.title}" id="content">title</h2>
-                    <p th:text="${blog.content}">Felis sagittis eget tempus primis in faucibus vestibulum. Blandit
-                        adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-                        praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in
-                        faucibus vestibulum.</p>
-                    <a th:href="@{'blog/detail/'+${blog.id}}" class="button">Detail</a>
+                    <p th:text="${blog.keywords}"></p>
+                    <a th:href="@{'blog/'+${blog.id}}" class="button">Detail</a>
 
                 </div>
-
 
             </section>
             <div style="margin: 0px auto">

@@ -24,14 +24,8 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>Z.M.C</strong></a>
-									<ul class="icons">
-										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
-									</ul>
+									<a href="/" class="logo"><strong>Z.M.C</strong></a>
+
 								</header>
 							<section id="banner">
 								<div id="header_box" class="content" style="background-image: url('images/header_bg.jpg')">
@@ -54,9 +48,9 @@
 										<article th:each="blog : ${blogList}">
 											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
 											<h3 th:text="${blog.title}">test</h3>
-											<p th:text="${blog.content}">Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p th:text="${blog.keywords}">Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Detail</a></li>
+												<li><a href="#" th:href="@{'blog/'+${blog.id}}" class="button">Detail</a></li>
 											</ul>
 										</article>
 									</div>
