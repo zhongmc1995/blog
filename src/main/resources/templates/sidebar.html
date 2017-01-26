@@ -18,21 +18,17 @@
             <ul>
                 <li><a href="/"><strong>首页</strong></a></li>
                 <li><a href="blog-list"><strong>博客列表</strong></a></li>
-                <li><a href="elements.html"><strong>博客分类</strong></a></li>
                 <li>
-                    <span class="opener"><strong>博客分类</strong></span>
-                    <ul>
-                        <li><a th:href="@{'tag-blogs/'+${tag.id}}" th:each="tag:${tagList}" th:text="${tag.tagname+'('+tag.blognum}+')'">Java(12)</a></li>
+                    <span id="blog_sort" class="opener"><strong>博客分类</strong></span>
+                    <ul id="ul1">
+                       <!-- <li th:each="tag:${tagList}" ><a th:href="@{'tag-blogs/'+${tag.id}}" th:text="${tag.tagname+'('+tag.blognum}+')'">Java(12)</a></li>-->
                     </ul>
                 </li>
-                <li><a href="elements.html"><strong>博客归档</strong></a></li>
+
                 <li>
-                    <span class="opener"><strong>博客分类</strong></span>
+                    <span class="opener"><strong>博客归档</strong></span>
                     <ul>
-                        <li><a href="#">Java(12)</a></li>
-                        <li><a href="#">数据库(1)</a></li>
-                        <li><a href="#">HTML(20)</a></li>
-                        <li><a href="#">Redis(1)</a></li>
+                        <li th:each="mb:${monthblogs}"><a href="#" th:text="${mb.key+'('+mb.value+')'}"></a></li>
                     </ul>
                 </li>
                 <li><a href="elements.html"><strong>相册</strong></a></li>
@@ -48,4 +44,5 @@
         </footer>
 
     </div>
+
 </div>

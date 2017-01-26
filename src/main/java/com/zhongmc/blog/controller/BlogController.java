@@ -22,4 +22,7 @@ public class BlogController {
         model.addAttribute("blog",blog);
         return  "blog_view";
     }
+
+
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface BlogMapper {
 
-    @Select("select * from tbl_blog")
+    @Select("select * from tbl_blog order by tbl_blog.createtime DESC")
     List<Blog> findAllBlog();
 
     @Select("select * from tbl_blog where id = #{id}")

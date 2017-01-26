@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -29,9 +31,28 @@ public class IndexController {
     public String index(Model model){
         List<Blog> blogList = blogMapper.findAllBlog();
         model.addAttribute("blogList",blogList);
+
         //初始化侧边栏的标签
         List<Tag> tagList = InitTagBlogNum(tagMapper.findAllTags());
         model.addAttribute("tagList",tagList);
+
+        Map<String,Integer> tmp = new HashMap<>();
+        //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+
+        for (Blog b:blogList) {
+            Date bdate = b.getCreateTime();
+            String dateStr = simpleDateFormat.format(bdate);
+            Integer num = tmp.get(dateStr);
+            if (num==null){
+                //说明之前没有
+                tmp.put(dateStr,1);
+            }else {
+                tmp.put(dateStr,num+1);
+            }
+        }
+
+        model.addAttribute("monthblogs",tmp);
         return "index";
     }
 
@@ -42,5 +63,14 @@ public class IndexController {
         }
         return tagList;
     }
+
+    //获取标签 返回json数据
+    @RequestMapping("/getTag")
+    @ResponseBody
+    public List<Tag> getTags(){
+        List<Tag> tagList = InitTagBlogNum(tagMapper.findAllTags());
+        return tagList;
+    }
+
 
 }
