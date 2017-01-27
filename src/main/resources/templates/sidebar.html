@@ -17,18 +17,17 @@
             </header>
             <ul>
                 <li><a href="/"><strong>首页</strong></a></li>
-                <li><a href="blog-list"><strong>博客列表</strong></a></li>
+                <li><a href="/blog-list"><strong>博客列表</strong></a></li>
                 <li>
                     <span id="blog_sort" class="opener"><strong>博客分类</strong></span>
                     <ul id="ul1">
                        <!-- <li th:each="tag:${tagList}" ><a th:href="@{'tag-blogs/'+${tag.id}}" th:text="${tag.tagname+'('+tag.blognum}+')'">Java(12)</a></li>-->
                     </ul>
                 </li>
-
                 <li>
-                    <span class="opener"><strong>博客归档</strong></span>
-                    <ul>
-                        <li th:each="mb:${monthblogs}"><a href="#" th:text="${mb.key+'('+mb.value+')'}"></a></li>
+                    <span class="opener" id="blog_msort"><strong>博客归档</strong></span>
+                    <ul id="ul2">
+                        <li th:each="mb:${monthblogs}"><a th:href="@{'/blogs/'+${mb.key}}" th:text="${mb.key+'('+mb.value+')'}"></a></li>
                     </ul>
                 </li>
                 <li><a href="elements.html"><strong>相册</strong></a></li>
@@ -39,7 +38,7 @@
         <!-- Footer -->
         <footer id="footer">
             <p class="copyright">
-            &copy; 2017-1-22. 钟明城的独立博客.
+                Copyright &copy; 2017. 钟明城的独立博客.
             </p>
         </footer>
 

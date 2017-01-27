@@ -20,6 +20,7 @@ import java.util.*;
  */
 @Controller
 public class IndexController {
+    List<Blog> ll;
 
     @Autowired
     BlogMapper blogMapper;
@@ -30,17 +31,18 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model){
         List<Blog> blogList = blogMapper.findAllBlog();
+        this.ll = blogList;
         model.addAttribute("blogList",blogList);
 
         //初始化侧边栏的标签
-        List<Tag> tagList = InitTagBlogNum(tagMapper.findAllTags());
-        model.addAttribute("tagList",tagList);
+        /*List<Tag> tagList = InitTagBlogNum(tagMapper.findAllTags());
+        model.addAttribute("tagList",tagList); 变为ajax请求数据了*/
 
-        Map<String,Integer> tmp = new HashMap<>();
+        /*Map<String,Integer> tmp = new HashMap<>();*/
         //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");*/
 
-        for (Blog b:blogList) {
+       /* for (Blog b:blogList) {
             Date bdate = b.getCreateTime();
             String dateStr = simpleDateFormat.format(bdate);
             Integer num = tmp.get(dateStr);
@@ -50,16 +52,17 @@ public class IndexController {
             }else {
                 tmp.put(dateStr,num+1);
             }
-        }
+        }*/
 
-        model.addAttribute("monthblogs",tmp);
+        /*model.addAttribute("monthblogs",tmp);*/
         return "index";
     }
 
     private List<Tag> InitTagBlogNum(List<Tag> tagList){
-
-        for (Tag tag:tagList) {
-            tag.setBlognum(tagMapper.calBlogNumByTagId(tag.getId()));
+        if (tagList!=null){
+            for (Tag tag:tagList) {
+                tag.setBlognum(tagMapper.calBlogNumByTagId(tag.getId()));
+            }
         }
         return tagList;
     }
@@ -72,5 +75,26 @@ public class IndexController {
         return tagList;
     }
 
+    //获取每月的博客
+    @RequestMapping("/getMonthBlogs")
+    @ResponseBody
+    public Map<String,Integer> getMonthBlogs(){
+        Map<String,Integer> tmp = new HashMap<>();
+        //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
+
+        for (Blog b:ll) {
+            Date bdate = b.getCreateTime();
+            String dateStr = simpleDateFormat.format(bdate);
+            Integer num = tmp.get(dateStr);
+            if (num==null){
+                //说明之前没有
+                tmp.put(dateStr,1);
+            }else {
+                tmp.put(dateStr,num+1);
+            }
+        }
+        return tmp;
+    }
 
 }

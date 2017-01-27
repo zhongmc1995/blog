@@ -24,7 +24,7 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index" class="logo"><strong>Z.M.C</strong></a>
+                <a href="/" class="logo"><strong>Z.M.C</strong></a>
 
             </header>
 
@@ -34,11 +34,11 @@
                     <h1>Blog</h1>
                 </header>
 
-                <span class="image main"><img src="images/blog.png" alt=""/></span>
+                <span class="image main"><img src="/images/blog.png" alt=""/></span>
                 <div th:each="blog : ${blogList}" class="box">
                     <h2 th:text="${blog.title}" id="content">title</h2>
                     <p th:text="${blog.keywords}"></p>
-                    <a th:href="@{'blog/'+${blog.id}}" class="button" target="_blank">Detail</a>
+                    <a th:href="@{'/blog/'+${blog.id}}" class="button" target="_blank">Detail</a>
 
                 </div>
 
@@ -71,7 +71,7 @@
 <script src="/assets/js/util.js"></script>
 <!--[if lte IE 8]>
 <script src="/assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
-<script src="js/common.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/js/common.js"></script>
 </body>
 </html>
