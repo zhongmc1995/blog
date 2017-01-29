@@ -7,13 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.print.Pageable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
 /**
  * Created by ZMC on 2017/1/16.
  */
@@ -29,7 +26,6 @@ public class BlogController {
         model.addAttribute("blog", blog);
         return "blog_view";
     }
-
     //筛选月博客
     @RequestMapping("/blogs/{year}/{month}")
     public String sortBlogByYM(Model model,@PathVariable(value = "year") int year, @PathVariable(value = "month") int month) throws ParseException {
@@ -49,13 +45,13 @@ public class BlogController {
     //筛选年博客
     @RequestMapping("/blogs/{year}")
     public String sortBlogByY(@PathVariable(value = "year") int year,Model model) {
-        if (year<2000){
+        if (year < 2000) {
             year = 2000;
         }
-        String y_start = year+"";
-        String y_end = (year+1)+"";
-        List<Blog> blogList = blogMapper.findBlogByYM(y_start,y_end);
-        model.addAttribute("blogList",blogList);
+        String y_start = year + "";
+        String y_end = (year + 1) + "";
+        List<Blog> blogList = blogMapper.findBlogByYM(y_start, y_end);
+        model.addAttribute("blogList", blogList);
         return "blog_list";
     }
     //博客列表
