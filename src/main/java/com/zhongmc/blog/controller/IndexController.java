@@ -1,6 +1,5 @@
 package com.zhongmc.blog.controller;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
@@ -20,7 +19,7 @@ import java.util.*;
  */
 @Controller
 public class IndexController {
-    List<Blog> ll;
+
 
     @Autowired
     BlogMapper blogMapper;
@@ -31,7 +30,6 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model){
         List<Blog> blogList = blogMapper.findAllBlog();
-        this.ll = blogList;
         model.addAttribute("blogList",blogList);
 
         //初始化侧边栏的标签
@@ -82,7 +80,7 @@ public class IndexController {
         Map<String,Integer> tmp = new HashMap<>();
         //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
-
+        List<Blog> ll = blogMapper.findAllBlog();
         for (Blog b:ll) {
             Date bdate = b.getCreateTime();
             String dateStr = simpleDateFormat.format(bdate);
