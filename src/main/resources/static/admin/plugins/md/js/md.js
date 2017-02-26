@@ -186,7 +186,6 @@ function markdown(textarea, toolbar, preview) {
         $(".md-edittab a").removeClass('active');
         $(this).addClass("active");
         $("#md-editarea, #md-preview").addClass("md-hidetab");
-
         var selected_tab = $(this).attr("href"),
             selected_el = $(selected_tab).removeClass("md-hidetab");
 

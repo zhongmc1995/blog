@@ -14,6 +14,8 @@
     <link href="//cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 
+    <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
     <style>
         #tags_tagsinput {
             background-color: #fafafa;
@@ -31,37 +33,27 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-sm-12">
-        <h4 class="page-title">
-            编辑文章
-            #else
-            发布文章
-            #end
-        </h4>
-    </div>
     <div class="col-md-12">
         <form id="articleForm" role="form" novalidate="novalidate">
-            <input type="hidden" name="categories" id="categories"/>
-            <input type="hidden" name="cid" value="" id="cid"/>
-            <input type="hidden" name="status" value="" id="status"/>
-            <input type="hidden" name="allow_comment" value="" id="allow_comment"/>
-            <input type="hidden" name="allow_ping" value="" id="allow_ping"/>
-            <input type="hidden" name="allow_feed" value="" id="allow_feed"/>
-            <input type="hidden" name="content" id="content-editor"/>
+            <div id="box">
+                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                    <input id="title" type="text" class="form-control" placeholder="请输入文章标题（必须）" name="title" required
+                           aria-required="true" value=""/>
+                </div>
 
-            <div class="form-group col-md-6" style="padding: 0 10px 0 0;">
-                <input type="text" class="form-control" placeholder="请输入文章标题（必须）" name="title" required
-                       aria-required="true" value=""/>
-            </div>
+                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
+                           value=""/>
+                </div>
 
-            <div class="form-group col-md-6" style="padding: 0 0 0 10px;">
-                <input type="text" class="form-control" placeholder="自定义访问路径，如：my-first-article  默认为文章id" name="slug"
-                       value=""/>
-            </div>
-
-            <div class="form-group col-md-6" style="padding: 0 10px 0 0;">
-                <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
-                       value=""/>
+                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
+                           value=""/>
+                </div>
+                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
+                           value=""/>
+                </div>
             </div>
 
 
@@ -107,6 +99,7 @@
             </div>
         </form>
     </div>
+</div>
 
 </div>
 
@@ -123,6 +116,14 @@
 <script src="//cdn.bootcss.com/select2/3.4.8/select2.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
 <script src="/admin/js/article.js"></script>
+<script>
+    $("#md-fullscreen-button").click(function () {
+        $("#title").css("visibility","hidden");
+    });
 
+    $("#md-exit-fullscreen-button").click(function () {
+        $("#title").css("visibility","visible");
+    });
+</script>
 </body>
 </html>

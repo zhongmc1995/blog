@@ -54,10 +54,7 @@ function subArticle(status) {
 var textarea = $('#text'),
     toolbar = $('<div class="markdown-editor" id="md-button-bar" />').insertBefore(textarea.parent())
 preview = $('<div id="md-preview" class="md-hidetab" />').insertAfter('.markdown-editor');
-console.log("run");
 markdown(textarea, toolbar, preview);
-
-
 
 function allow_comment(obj) {
     var this_ = $(obj);
