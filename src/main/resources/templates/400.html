@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>400</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    h1,h2,h3{
+        font-family: inherit;
+        color: #4c4f53;
+    }
+    body{
+        background-color: #e6e8ea;
+    }
+    .text-center{
+        text-align: center;
+    }
+    #text-box{
+        margin: 200px auto;
+    }
+    #goback{
+        background-color: #f1f1f1;
+        border: #f1f1f1 solid 2px;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: bold;
+        color: #4c4f53;
+        margin-top: 16px;
+        padding: 12px;
+        cursor: pointer;
+    }
+    #goback:hover{
+        background-color: #3d4449;
+        color: #9fa3a6;
+    }
+</style>
+<script>
+    function goIndex() {
+        window.location.href = "/";
+    }
+</script>
+<body>
+    <div class="text-center" id="text-box">
+        <h1 style="font-size: 92px">400</h1>
+        <h2>Oops! Bad request ...</h2>
+        <h3>The Request May Exist Error Of Binding Parameter.</h3>
+        <button id="goback" onclick="goIndex();">返回首页</button>
+    </div>
+</body>
+</html>
