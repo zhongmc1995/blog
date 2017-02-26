@@ -37,7 +37,7 @@
                 <div th:each="blog : ${blogList}" class="box">
                     <h2 th:text="${blog.title}" id="content">title</h2>
                     <p th:text="${blog.keywords}"></p>
-                    <a th:href="@{'/blog/'+${blog.id}}" class="button" target="_blank">Detail</a>
+                    <a th:href="@{'/blog/'+${blog.id}}" class="button">Detail</a>
 
                 </div>
 
