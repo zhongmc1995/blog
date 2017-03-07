@@ -70,9 +70,5 @@ public class PagingUtil {
     }
 
 
-    public static  void main(String []args){
-        PagingUtil pagingUtil = new PagingUtil();
-        String p=  pagingUtil.getPagelink(1,10,"","");
-        System.out.println(p);
-    }
+
 }

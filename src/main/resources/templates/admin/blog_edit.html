@@ -36,23 +36,32 @@
     <div class="col-md-12">
         <form id="articleForm" role="form" novalidate="novalidate">
             <div id="box">
-                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                    <input id="title" type="text" class="form-control" placeholder="请输入文章标题（必须）" name="title" required
-                           aria-required="true" value=""/>
+                <div class="form-group col-md-12">
+                    <label class="col-md-1 control-label">标题</label>
+                    <div class="form-group col-md-11">
+                        <input id="title" type="text" class="form-control col-md-11" placeholder="请输入文章标题（必须）" name="title" required
+                               aria-required="true" value=""/>
+                    </div>
                 </div>
-
-                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
-                           value=""/>
+                <div class="form-group col-md-12">
+                    <label class="col-md-1 control-label">归类</label>
+                    <div class="form-group col-md-11">
+                        <input name="tags" id="type" type="text" class="form-control col-md-11" placeholder="请填写文章标签"
+                               value=""/>
+                    </div>
                 </div>
-
-                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
-                           value=""/>
+                <div class="form-group col-md-12">
+                    <label class="col-md-1 control-label">标签</label>
+                    <div class="form-group col-md-11">
+                        <input name="tags" id="tags" type="text" class="form-control col-md-11" placeholder="请填写文章标签"
+                               value=""/>
+                    </div>
                 </div>
-                <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                    <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签"
-                           value=""/>
+                <div class="form-group col-md-12">
+                    <label class="col-md-1 control-label">摘要</label>
+                    <div class="form-group col-md-11" style="padding: 0 10px 0 0;">
+                        <textarea  class="form-control" rows="3"></textarea>
+                    </div>
                 </div>
             </div>
 
@@ -103,15 +112,50 @@
 
 </div>
 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">博客分类</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#chooseType" data-toggle="tab">
+                            分类
+                        </a>
+                    </li>
+                    <li><a href="#addType" data-toggle="tab">新增分类</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="chooseType">
+                        <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                    </div>
+                    <div class="tab-pane fade" id="addType">
+                        <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <script src="/admin/plugins/tagsinput/jquery.tagsinput.min.js"></script>
 <script src="/admin/plugins/jquery-multi-select/jquery.quicksearch.js"></script>
-
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/admin/plugins/md/js/jquery.scrollto.js"></script>
 <script src="/admin/plugins/md/js/pagedown.js"></script>
 <script src="/admin/plugins/md/js/pagedown-extra.js"></script>
 <script src="/admin/plugins/md/js/diff.js"></script>
 <script src="/admin/plugins/md/js/md.js"></script>
-
 <script src="//cdn.bootcss.com/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>
 <script src="//cdn.bootcss.com/select2/3.4.8/select2.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
@@ -123,6 +167,11 @@
 
     $("#md-exit-fullscreen-button").click(function () {
         $("#title").css("visibility","visible");
+    });
+
+    $("#type").focus(function () {
+        $("#myModal").modal('toggle');
+
     });
 </script>
 </body>
