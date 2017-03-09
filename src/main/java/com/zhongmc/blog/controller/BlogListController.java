@@ -49,6 +49,6 @@ public class BlogListController {
         model.addAttribute("blogList",blogList);
         String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/blog-list");
         model.addAttribute("pageStr",pageStr);
-        return "blog_list";
+        return "themes/default/index";
     }
 }

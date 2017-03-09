@@ -24,7 +24,7 @@ public class PagingUtil {
             if (maxPageNo<=7){
                 for (int i = begainNo; i <= endNo; i++) {
                     if (currentPageNo==i){
-                        sb.append("<li><a href=\"\" class=\"current\">"+i+"</a></li>");
+                        sb.append("<li class=\"current\"><a href=\"\" class=\"current\">"+i+"</a></li>");
                     }else {
                         sb.append("<li><a href=\""+url+"?page="+i+"\" class=\"page\">"+i+"</a></li>");
                     }
@@ -33,7 +33,7 @@ public class PagingUtil {
                 if (currentPageNo<6){
                     for (int i=1;i<=7;i++){
                         if (currentPageNo==i){
-                            sb.append("<li><a href=\"\" class=\"current\">"+i+"</a></li>");
+                            sb.append("<li class=\"current\"><a href=\"\" class=\"current\">"+i+"</a></li>");
                         }else {
                             sb.append("<li><a href=\""+url+"?page="+i+"\" class=\"\">"+i+"</a></li>");
                         }
@@ -55,7 +55,7 @@ public class PagingUtil {
                     sb.append("<li><span>&hellip;</span></li>");
                     for (int i=4;i>=0;i--){
                         if ((maxPageNo-i)==currentPageNo){
-                            sb.append("<li><a href=\"\" class=\"current\">"+(maxPageNo-i)+"</a></li>");
+                            sb.append("<li class=\"current\"><a href=\"\" class=\"current\">"+(maxPageNo-i)+"</a></li>");
                         }else {
                             sb.append("<li><a href=\""+url+"?page="+(maxPageNo-i)+"\" class=\"\">"+(maxPageNo-i)+"</a></li>");
                         }

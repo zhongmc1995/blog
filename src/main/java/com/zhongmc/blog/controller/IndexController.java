@@ -34,7 +34,7 @@ public class IndexController {
     public String index(Model model, HttpServletRequest request){
         /*List<Blog> blogList = blogMapper.findAllBlog();
         model.addAttribute("blogList",blogList);*/
-        int totalSize = blogMapper.Count();
+       /* int totalSize = blogMapper.Count();
         Page<Blog> blogPage = new Page<>();
         blogPage.setPageSize(1);
 
@@ -57,9 +57,9 @@ public class IndexController {
         List<Blog> blogList = blogMapper.findBlogsByPage(tmp);
         model.addAttribute("blogList",blogList);
         String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/blog-list");
-        model.addAttribute("pageStr",pageStr);
+        model.addAttribute("pageStr",pageStr);*/
 
-        return "themes/default/index";
+        return "redirect:/blog-list";
     }
 
     private List<Tag> InitTagBlogNum(List<Tag> tagList){
