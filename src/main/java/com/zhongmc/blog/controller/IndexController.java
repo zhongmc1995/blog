@@ -4,12 +4,15 @@ import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
+import com.zhongmc.blog.utils.Page;
+import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -28,32 +31,35 @@ public class IndexController {
 
 
     @RequestMapping("/")
-    public String index(Model model){
-        List<Blog> blogList = blogMapper.findAllBlog();
-        model.addAttribute("blogList",blogList);
+    public String index(Model model, HttpServletRequest request){
+        /*List<Blog> blogList = blogMapper.findAllBlog();
+        model.addAttribute("blogList",blogList);*/
+        int totalSize = blogMapper.Count();
+        Page<Blog> blogPage = new Page<>();
+        blogPage.setPageSize(1);
 
-        //初始化侧边栏的标签
-        /*List<Tag> tagList = InitTagBlogNum(tagMapper.findAllTags());
-        model.addAttribute("tagList",tagList); 变为ajax请求数据了*/
-
-        /*Map<String,Integer> tmp = new HashMap<>();*/
-        //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
-        /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");*/
-
-       /* for (Blog b:blogList) {
-            Date bdate = b.getCreateTime();
-            String dateStr = simpleDateFormat.format(bdate);
-            Integer num = tmp.get(dateStr);
-            if (num==null){
-                //说明之前没有
-                tmp.put(dateStr,1);
-            }else {
-                tmp.put(dateStr,num+1);
+        blogPage.setTotalRecord(totalSize);
+        int index = 1;
+        String page = request.getParameter("page");
+        if (page!=null){
+            index = Integer.parseInt(page);
+            if (index<1){
+                index = 1;
+            }else if (index>blogPage.getTotalPage()){
+                index = blogPage.getTotalPage();
             }
-        }*/
+        }
+        blogPage.setPageNo(index);
+        int startIndex = blogPage.getPageSize()*(blogPage.getPageNo()-1);
+        Map<String,Integer> tmp = new HashMap<>();
+        tmp.put("startIndex",startIndex);
+        tmp.put("pageSize",blogPage.getPageSize());
+        List<Blog> blogList = blogMapper.findBlogsByPage(tmp);
+        model.addAttribute("blogList",blogList);
+        String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/blog-list");
+        model.addAttribute("pageStr",pageStr);
 
-        /*model.addAttribute("monthblogs",tmp);*/
-        return "index";
+        return "themes/default/index";
     }
 
     private List<Tag> InitTagBlogNum(List<Tag> tagList){
