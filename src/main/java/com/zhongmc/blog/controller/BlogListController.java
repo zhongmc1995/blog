@@ -30,16 +30,17 @@ public class BlogListController {
         blogPage.setPageSize(1);
 
         blogPage.setTotalRecord(totalSize);
-        int index = 1;
+
         String page = request.getParameter("page");
-        if (page!=null){
+        /*if (page!=null){
             index = Integer.parseInt(page);
             if (index<1){
                 index = 1;
             }else if (index>blogPage.getTotalPage()){
                 index = blogPage.getTotalPage();
             }
-        }
+        }*/
+        int index = PagingUtil.fixIndex(page,blogPage.getTotalPage());
         blogPage.setPageNo(index);
         int startIndex = blogPage.getPageSize()*(blogPage.getPageNo()-1);
         Map<String,Integer> tmp = new HashMap<>();

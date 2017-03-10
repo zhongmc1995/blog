@@ -69,6 +69,17 @@ public class PagingUtil {
         return  sb.toString();
     }
 
-
+    public static int fixIndex(String page,int total){
+        int index =0;
+        if (page!=null){
+            index = Integer.parseInt(page);
+            if (index<1){
+                index = 1;
+            }else if (index>total){
+                index = total;
+            }
+        }
+        return index;
+    }
 
 }
