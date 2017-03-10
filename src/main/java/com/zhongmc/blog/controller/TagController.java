@@ -59,6 +59,14 @@ public class TagController {
         String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/tag-blogs/"+id);
         model.addAttribute("pageStr",pageStr);
 
-        return "tag_list";
+        return "themes/default/category_blogs";
+    }
+
+    //定向到标签页
+    @RequestMapping("/category-list")
+    public String toCategoryList(Model model){
+        List<Tag> tagList = tagMapper.findAllTags();
+        model.addAttribute("tagList",tagList);
+        return "themes/default/category";
     }
 }

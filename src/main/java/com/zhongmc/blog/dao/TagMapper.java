@@ -18,7 +18,7 @@ public interface TagMapper {
     List<Tag> findTagsByBlogId(int blogid);
 
     //查找所有的标签
-    @Select("select * from tbl_tag")
+    @Select("select * from tbl_tag order by createtime desc")
     List<Tag> findAllTags();
 
     //统计标签的博客数

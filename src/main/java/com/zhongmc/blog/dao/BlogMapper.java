@@ -40,4 +40,8 @@ public interface BlogMapper {
     @Select("SELECT count(*) from " +
             " tbl_blog as b,tbl_blog_tag where b.id=tbl_blog_tag.blogid and tbl_blog_tag.tagid = #{tagid}")
     int CountTagBlogs(Integer tagid);
+
+    //博客按日期归档
+    @Select("select * from tbl_blog ORDER BY createtime DESC;")
+    List<Blog> findAllBlogsSortByTime();
 }

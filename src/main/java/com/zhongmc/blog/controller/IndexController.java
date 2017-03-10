@@ -4,8 +4,6 @@ import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
-import com.zhongmc.blog.utils.Page;
-import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,7 +78,7 @@ public class IndexController {
     }
 
     //获取每月的博客
-    @RequestMapping("/getMonthBlogs")
+    /*@RequestMapping("/getMonthBlogs")
     @ResponseBody
     public Map<String,Integer> getMonthBlogs(){
         Map<String,Integer> tmp = new HashMap<>();
@@ -99,6 +97,6 @@ public class IndexController {
             }
         }
         return tmp;
-    }
+    }*/
 
 }
