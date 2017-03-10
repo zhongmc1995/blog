@@ -38,7 +38,7 @@ public class BlogController {
         List<Blog> blogList = blogMapper.findBlogByYM(ym_start, ym_end);
         model.addAttribute("blogList",blogList);
 
-        return "blog_list";
+        return "themes/default/index";
     }
 
     //筛选年博客
@@ -51,7 +51,7 @@ public class BlogController {
         String y_end = (year + 1) + "";
         List<Blog> blogList = blogMapper.findBlogByYM(y_start, y_end);
         model.addAttribute("blogList", blogList);
-        return "blog_list";
+        return "themes/default/index";
     }
     //博客列表
     @RequestMapping("/blogs")
