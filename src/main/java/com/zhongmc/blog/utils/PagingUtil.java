@@ -70,7 +70,7 @@ public class PagingUtil {
     }
 
     public static int fixIndex(String page,int total){
-        int index =0;
+        int index =1;
         if (page!=null){
             index = Integer.parseInt(page);
             if (index<1){
