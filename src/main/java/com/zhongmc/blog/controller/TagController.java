@@ -35,7 +35,7 @@ public class TagController {
 
         int totalSize = blogMapper.CountTagBlogs(id);
         Page<Blog> blogPage = new Page<>();
-        blogPage.setPageSize(1);
+        blogPage.setPageSize(4);
 
         blogPage.setTotalRecord(totalSize);
         String page = request.getParameter("page");
@@ -48,7 +48,7 @@ public class TagController {
         tmp.put("pageSize",blogPage.getPageSize());
         List<Blog> blogList = blogMapper.findBlogsByTagId(tmp);
         model.addAttribute("blogList",blogList);
-        String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/tag-blogs/"+id);
+        String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/tag-blogs/"+id);
         model.addAttribute("pageStr",pageStr);
 
         return "themes/default/category_blogs";

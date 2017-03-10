@@ -27,8 +27,6 @@ public class BlogListController {
     public String blogList(Model model, HttpServletRequest request){
         int totalSize = blogMapper.Count();
         Page<Blog> blogPage = new Page<>();
-        blogPage.setPageSize(1);
-
         blogPage.setTotalRecord(totalSize);
 
         String page = request.getParameter("page");
@@ -48,7 +46,7 @@ public class BlogListController {
         tmp.put("pageSize",blogPage.getPageSize());
         List<Blog> blogList = blogMapper.findBlogsByPage(tmp);
         model.addAttribute("blogList",blogList);
-        String pageStr = PagingUtil.getPagelink(index,blogPage.getTotalRecord()/blogPage.getPageSize(),"","/blog-list");
+        String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/blog-list");
         model.addAttribute("pageStr",pageStr);
         return "themes/default/index";
     }
