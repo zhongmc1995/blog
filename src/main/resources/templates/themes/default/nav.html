@@ -1,0 +1,34 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="nav">
+    <div class="navbar-container">
+        <a href="/" class="navbar-logo">
+            <img src="/user/img/logo.png" alt="首页"/>
+        </a>
+        <div class="navbar-menu">
+            <a href="/category-list">标签</a>
+            <a href="/archive-list">归档</a>
+            <a href="${site_url('/links')}">友链</a>
+            <a href="${site_url('/about')}">关于</a>
+        </div>
+        <div class="navbar-search" onclick="">
+            <span class="icon-search"></span>
+            <form role="search" onsubmit="return false;">
+                <span class="search-box">
+                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"
+                           autocomplete="off">
+                </span>
+            </form>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>
+                <li><a href="/category-list">标签</a></li>
+                <li><a href="/archive-list">归档</a></li>
+                <li><a href="${site_url('/links')}">友链</a></li>
+                <li><a href="${site_url('/about')}">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</header>

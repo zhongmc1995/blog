@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--包含头模块-->
+<head th:include="themes/default/header::header" />
+<body>
+<header class="header bg-white" th:include="themes/default/nav::nav"></header>
+<div class="main-content common-page clearfix">
+    <div class="categorys-item">
+        <div class="common-title">
+            分类
+        </div>
+        <div class="post-lists">
+            <div class="post-lists-body">
+                <div th:each="tag:${tagList}" class="post-list-item">
+                    <div class="post-list-item-container ">
+                        <div class="item-label ">
+                            <div class="item-title">
+                                <a th:href="@{'tag-blogs/'+${tag.id}}"  th:text="${tag.tagname}"></a>
+                            </div>
+                            <div class="item-meta clearfix">
+                                <div class="item-meta-ico ${show_icon(article.cid)}"
+                                     style="background: url(user/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                                <div class="item-meta-date">创建于<span th:text="${#dates.format(tag.createTime,'yyyy-MM-dd')}"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--#end-->
+            </div>
+        </div>
+       <!-- #end-->
+    </div>
+    <div class="lists-navigator clearfix"></div>
+</div>
+<footer th:include="themes/default/footer::footer" />
+</body>

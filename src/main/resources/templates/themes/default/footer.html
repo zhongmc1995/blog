@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<footer th:fragment="footer" class="footer bg-white">
+    <div class="footer-social">
+        <div class="footer-container clearfix">
+            <div class="social-list">
+                <a class="social weibo" target="blank" href="http://weibo.com">微博</a>
+                <a class="social zhihu" target="blank"
+                   href="https://www.zhihu.com/people">知乎</a>
+                <a class="social rss" target="blank" href="/feed">RSS</a>
+                <a class="social github" target="blank"
+                   href="http://github.com/zhongmc1995">Github</a>
+                <a class="social csdn" target="blank" href="http://blog.csdn.net/airmario?viewmode=list">CSDN</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="" class="info-logo">
+                        <img src="/user/img/logo.png" alt="logo">
+                    </a>
+                    <div class="info-text">
+                        <p>一生有所追求.</p>
+                        <p>Powered by <a href="https://github.com/zhongmc1995" target="_blank" rel="nofollow">春天</a>
+                        </p>
+                        <p>&copy; 2017 <a href="https://github.com/zhongmc1995">Z.M.C</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lastest_blogs" class="meta-item meta-posts">
+                <h3 class="meta-title">最新文章</h3>
+            </div>
+
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新评论</h3>
+                <li>
+                    <a href="${site_url('/article/')}${comm.cid}#comment-${comm.coid}">${comm.author}：${comm.content}</a>
+                </li>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url:'/footer-data',
+                type:'GET',
+                async:true,
+                dataType:'json',
+                success:function (data) {
+                    $(data).each(function (index,item) {
+                        $('#lastest_blogs').append("<li><a href='/blog/"+item.id+"'>"+item.title+"</a></li>");
+                    });
+                },
+                error:function () {
+
+                }
+            });
+        });
+    </script>
+</footer>

@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--包含头模块-->
+<head th:include="themes/default/header::header" />
+<body>
+<header class="header bg-white" th:include="themes/default/nav::nav"></header>
+<div class="main-content index-page clearfix">
+    <div class="post-lists">
+        <div class="post-lists-body">
+            <!--#for(article : articles.list)-->
+            <div class="post-list-item" th:each="blog:${blogList}">
+                <div class="post-list-item-container">
+                    <a th:href="@{'/blog/'+${blog.id}}" class="item-thumb bg-deepgrey"
+                       style="background-image:url(/images/pic01.jpg);">
+                        <dir class="item-desc" th:text="${blog.keywords}" >dsfs</dir>
+                    </a>
+                    <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+                    <div class="item-slant"></div>
+                    <div class="item-label">
+                        <div class="item-title" th:text="${blog.title}" ><a href="${permalink(article)}">sfs</a>
+                        </div>
+                        <div class="item-meta clearfix">
+                            <div class="item-meta-ico ${show_icon(article.cid)}"
+                                 style="background: url(/user/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+                                <a th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')+'  '+blog.createBy}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--#end-->
+
+        </div>
+    </div>
+    <div class="lists-navigator clearfix">
+        <ol class="lists-navigator clearfix" th:utext="${pageStr}">
+            <!--<li class="previous">
+                <a href="">←</a>
+            </li>
+            <li class="current">
+                <a href="">1</a>
+            </li>
+            <li class="">
+                <a href="">2</a>
+            </li>
+            <li class="">
+                <a href="">3</a>
+            </li>
+            <li class="">
+                <a href="">4</a>
+            </li>
+            <li class="next">
+                <a href="">→</a>
+            </li>-->
+        </ol>
+    </div>
+</div>
+<footer th:include="themes/default/footer::footer" />
+</body>
