@@ -44,4 +44,8 @@ public interface BlogMapper {
     //博客按日期归档
     @Select("select * from tbl_blog ORDER BY createtime DESC;")
     List<Blog> findAllBlogsSortByTime();
+
+    //筛选最新的blogs
+    @Select("select * from tbl_blog order by createtime desc limit 0,#{num}")
+    List<Blog> getLastestBlogs(int num);
 }

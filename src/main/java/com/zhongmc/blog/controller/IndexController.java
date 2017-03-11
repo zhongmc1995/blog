@@ -2,6 +2,7 @@ package com.zhongmc.blog.controller;
 
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
+import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,5 +67,10 @@ public class IndexController {
         }
         return tmp;
     }*/
-
+    @RequestMapping("/footer-data")
+    @ResponseBody
+    public List<Blog> initFooterData(){
+        List<Blog> lastersBlogs = blogMapper.getLastestBlogs(4);//获取四条最新的blog
+        return lastersBlogs;
+    }
 }
