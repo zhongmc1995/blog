@@ -2,8 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="nav">
+    <!--请求进度条-->
+    <script>
+        NProgress.start();
+        setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+    </script>
     <div class="navbar-container">
-        <a href="/" class="navbar-logo">
+        <a id="logobtn" href="/" class="navbar-logo">
             <img src="/user/img/logo.png" alt="首页"/>
         </a>
         <div class="navbar-menu">
