@@ -35,7 +35,7 @@ public class TagController {
 
         int totalSize = blogMapper.CountTagBlogs(id);
         Page<Blog> blogPage = new Page<>();
-        blogPage.setPageSize(4);
+        blogPage.setPageSize(6);
 
         blogPage.setTotalRecord(totalSize);
         String page = request.getParameter("page");

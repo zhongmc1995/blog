@@ -82,4 +82,8 @@ public class PagingUtil {
         return index;
     }
 
+    public static  void main(String [] args){
+        String str = PagingUtil.getPagelink(1,1,"","");
+        System.out.print(3/4);
+    }
 }
