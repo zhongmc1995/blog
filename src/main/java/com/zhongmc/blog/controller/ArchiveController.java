@@ -2,6 +2,7 @@ package com.zhongmc.blog.controller;
 
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.domain.Blog;
+import com.zhongmc.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +17,14 @@ import java.util.*;
 @Controller
 public class ArchiveController {
     @Autowired
-    private BlogMapper blogMapper;
+    private IBlogService blogService;
     //博客归档
     @RequestMapping("/archive-list")
     public String archiveList(Model model){
         Map<String,Integer> tmp = new HashMap<>();
         //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
-        List<Blog> ll = blogMapper.findAllBlog();
+        List<Blog> ll = blogService.findAllBlog();
         for (Blog b:ll) {
             Date bdate = b.getCreateTime();
             String dateStr = simpleDateFormat.format(bdate);
@@ -51,7 +52,7 @@ public class ArchiveController {
                 }else {
                     ym_end = year+"-"+(month+1)+"-01";
                 }
-                blogList = blogMapper.findBlogByYM(ym_start, ym_end);
+                blogList = blogService.findBlogByYM(ym_start, ym_end);
             }
             newMap.put(date,blogList);
         }

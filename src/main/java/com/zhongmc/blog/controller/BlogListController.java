@@ -2,6 +2,7 @@ package com.zhongmc.blog.controller;
 
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.domain.Blog;
+import com.zhongmc.blog.service.IBlogService;
 import com.zhongmc.blog.utils.Page;
 import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ import java.util.Map;
 @Controller
 public class BlogListController {
     @Autowired
-    BlogMapper blogMapper;
+    IBlogService blogService;
 
     @RequestMapping("/blog-list")
     public String blogList(Model model, HttpServletRequest request){
-        int totalSize = blogMapper.Count();
+        int totalSize = blogService.Count();
         Page<Blog> blogPage = new Page<>();
         blogPage.setTotalRecord(totalSize);
 
@@ -43,7 +44,7 @@ public class BlogListController {
         Map<String,Integer> tmp = new HashMap<>();
         tmp.put("startIndex",startIndex);
         tmp.put("pageSize",blogPage.getPageSize());
-        List<Blog> blogList = blogMapper.findBlogsByPage(tmp);
+        List<Blog> blogList = blogService.findBlogsByPage(tmp);
         model.addAttribute("blogList",blogList);
         String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/blog-list");
         model.addAttribute("pageStr",pageStr);

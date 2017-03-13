@@ -4,6 +4,7 @@ import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
+import com.zhongmc.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +19,13 @@ import java.util.List;
 @Controller
 public class BlogDetailController {
     @Autowired
-    BlogMapper blogMapper;
+    IBlogService blogService;
     @Autowired
     TagMapper tagMapper;
 
     @RequestMapping("/blog/{id}")
     public String blogDetail(@PathVariable("id")int id, Model model){
-        Blog blog = blogMapper.findOneById(id);
+        Blog blog = blogService.findOneById(id);
         List<Tag>tagList = tagMapper.findTagsByBlogId(id);
         String tagStr = "";
         for (Tag tag: tagList) {

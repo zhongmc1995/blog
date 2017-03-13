@@ -4,6 +4,7 @@ import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
+import com.zhongmc.blog.service.IBlogService;
 import com.zhongmc.blog.utils.Page;
 import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import java.util.Map;
 @Controller
 public class TagController {
     @Autowired
-    BlogMapper blogMapper;
+    IBlogService blogService;
     @Autowired
     TagMapper tagMapper;
     //通过标签id查找所有的博客
@@ -33,7 +34,7 @@ public class TagController {
         Tag tag = tagMapper.findOneById(id);
         model.addAttribute("tag",tag);
 
-        int totalSize = blogMapper.CountTagBlogs(id);
+        int totalSize = blogService.CountTagBlogs(id);
         Page<Blog> blogPage = new Page<>();
         blogPage.setPageSize(6);
 
@@ -46,7 +47,7 @@ public class TagController {
         tmp.put("tagid",id);
         tmp.put("startIndex",startIndex);
         tmp.put("pageSize",blogPage.getPageSize());
-        List<Blog> blogList = blogMapper.findBlogsByTagId(tmp);
+        List<Blog> blogList = blogService.findBlogsByTagId(tmp);
         model.addAttribute("blogList",blogList);
         String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/tag-blogs/"+id);
         model.addAttribute("pageStr",pageStr);

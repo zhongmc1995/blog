@@ -4,6 +4,7 @@ import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
+import com.zhongmc.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class IndexController {
 
 
     @Autowired
-    BlogMapper blogMapper;
+    IBlogService blogService;
     @Autowired
     TagMapper tagMapper;
 
@@ -70,7 +71,7 @@ public class IndexController {
     @RequestMapping("/footer-data")
     @ResponseBody
     public List<Blog> initFooterData(){
-        List<Blog> lastersBlogs = blogMapper.getLastestBlogs(4);//获取四条最新的blog
+        List<Blog> lastersBlogs = blogService.getLastestBlogs(4);//获取四条最新的blog
         return lastersBlogs;
     }
 }
