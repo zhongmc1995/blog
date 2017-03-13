@@ -5,6 +5,7 @@ import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
 import com.zhongmc.blog.service.IBlogService;
+import com.zhongmc.blog.service.ITagServive;
 import com.zhongmc.blog.utils.Page;
 import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,11 @@ public class TagController {
     @Autowired
     IBlogService blogService;
     @Autowired
-    TagMapper tagMapper;
+    ITagServive tagService;
     //通过标签id查找所有的博客
     @RequestMapping(value = "/tag-blogs/{tagid}",method = RequestMethod.GET)
     public String tagBlogs(@PathVariable("tagid") int id, Model model, HttpServletRequest request){
-        Tag tag = tagMapper.findOneById(id);
+        Tag tag = tagService.findOneById(id);
         model.addAttribute("tag",tag);
 
         int totalSize = blogService.CountTagBlogs(id);
@@ -58,7 +59,7 @@ public class TagController {
     //定向到标签页
     @RequestMapping("/category-list")
     public String toCategoryList(Model model){
-        List<Tag> tagList = tagMapper.findAllTags();
+        List<Tag> tagList = tagService.findAllTags();
         model.addAttribute("tagList",tagList);
         return "themes/default/category";
     }

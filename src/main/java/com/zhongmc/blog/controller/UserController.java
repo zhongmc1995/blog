@@ -1,7 +1,7 @@
 package com.zhongmc.blog.controller;
 
-import com.zhongmc.blog.dao.UserMapper;
 import com.zhongmc.blog.domain.User;
+import com.zhongmc.blog.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UserController {
     @Autowired
-    UserMapper userMapper;
+    IUserService userService;
 
     @RequestMapping("/user/{username}")
     @ResponseBody
     public String user(@PathVariable("username") String username){
-        User user = userMapper.findOneByUserName(username);
+        User user = userService.findOneByUserName(username);
         return user.toString();
     }
 }
