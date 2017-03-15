@@ -6,13 +6,13 @@
 <body>
 <header class="header bg-white" th:include="themes/default/nav::nav"></header>
 <div class="main-content archive-page clearfix">
-    <div class="categorys-item" th:each="bMap:${dateBlogs}">
+    <div class="categorys-item" th:each="aL:${archiveList}">
        <!-- #for(archive : archives)-->
-        <div class="categorys-title" th:text="${bMap.key}"></div>
+        <div class="categorys-title" th:text="${aL.key}"></div>
         <div class="post-lists">
             <div class="post-lists-body">
                 <!--#for(article : archive.articles)-->
-                <div class="post-list-item" th:each="blog:${bMap.value}">
+                <div class="post-list-item" th:each="blog:${aL.value}">
                     <div class="post-list-item-container">
                         <div class="item-label">
                             <div class="item-title">

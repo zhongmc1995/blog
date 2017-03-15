@@ -15,7 +15,7 @@ import java.util.*;
  * Created by zhongmc on 2017/3/10.
  */
 @Controller
-public class ArchiveController {
+public class ArchiveController extends BaseController {
     @Autowired
     private IBlogService blogService;
     //博客归档
@@ -56,7 +56,19 @@ public class ArchiveController {
             }
             newMap.put(date,blogList);
         }
-        model.addAttribute("dateBlogs",newMap);
-        return "themes/default/archives";
+        //对map进行排序
+        List<Map.Entry> archiveList = new ArrayList(newMap.entrySet());
+        Collections.sort(archiveList, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Map.Entry<String,List<Blog>> entry1 = (Map.Entry)o1;
+                Map.Entry<String,List<Blog>> entry2 = (Map.Entry)o2;
+                return (entry2.getKey()).compareTo(entry1.getKey());
+            }
+        });
+
+        model.addAttribute("archiveList",archiveList);
+        /*return "themes/default/archives";*/
+        return THEME+"/archives";
     }
 }
