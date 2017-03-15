@@ -14,7 +14,7 @@ import java.util.List;
  * Created by ZMC on 2017/1/16.
  */
 @Controller
-public class BlogController {
+public class BlogController extends BaseController {
 
     @Autowired
     BlogMapper blogMapper;
@@ -38,7 +38,8 @@ public class BlogController {
         List<Blog> blogList = blogMapper.findBlogByYM(ym_start, ym_end);
         model.addAttribute("blogList",blogList);
 
-        return "themes/default/index";
+        /*return "themes/default/index";*/
+        return THEME+"/index";
     }
 
     //筛选年博客
@@ -51,7 +52,8 @@ public class BlogController {
         String y_end = (year + 1) + "";
         List<Blog> blogList = blogMapper.findBlogByYM(y_start, y_end);
         model.addAttribute("blogList", blogList);
-        return "themes/default/index";
+        /*return "themes/default/index";*/
+        return THEME+"/index";
     }
     //博客列表
     @RequestMapping("/blogs")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by ZMC on 2017/1/16.
  */
 @Controller
-public class UserController {
+public class UserController extends BaseController {
     @Autowired
     IUserService userService;
 

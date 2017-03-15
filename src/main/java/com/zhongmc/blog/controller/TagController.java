@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sun.awt.windows.ThemeReader;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ import java.util.Map;
  * Created by ZMC on 2017/1/25.
  */
 @Controller
-public class TagController {
+public class TagController extends BaseController {
     @Autowired
     IBlogService blogService;
     @Autowired
@@ -53,7 +54,8 @@ public class TagController {
         String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/tag-blogs/"+id);
         model.addAttribute("pageStr",pageStr);
 
-        return "themes/default/category_blogs";
+      /*  return "themes/default/category_blogs";*/
+      return THEME+"/category_blogs";
     }
 
     //定向到标签页
@@ -61,6 +63,7 @@ public class TagController {
     public String toCategoryList(Model model){
         List<Tag> tagList = tagService.findAllTags();
         model.addAttribute("tagList",tagList);
-        return "themes/default/category";
+        /*return "themes/default/category";*/
+        return THEME+"/category";
     }
 }

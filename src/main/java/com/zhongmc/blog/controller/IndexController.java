@@ -16,7 +16,7 @@ import java.util.*;
  * Created by ZMC on 2017/1/16.
  */
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
 
     @Autowired

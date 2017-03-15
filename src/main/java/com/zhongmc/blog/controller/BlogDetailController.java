@@ -18,7 +18,7 @@ import java.util.List;
  * Created by ZMC on 2017/1/25.
  */
 @Controller
-public class BlogDetailController {
+public class BlogDetailController extends BaseController {
     @Autowired
     IBlogService blogService;
     @Autowired
@@ -35,6 +35,7 @@ public class BlogDetailController {
         blog.setTags(tagStr.substring(0,tagStr.length()-1));
         blog.setTagList(tagList);
         model.addAttribute("blog",blog);
-        return "themes/default/page" ;
+        /*return "themes/default/page" ;*/
+        return THEME+"/page";
     }
 }

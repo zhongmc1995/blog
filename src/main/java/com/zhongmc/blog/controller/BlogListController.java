@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by ZMC on 2017/1/16.
  */
 @Controller
-public class BlogListController {
+public class BlogListController extends BaseController {
     @Autowired
     IBlogService blogService;
 
@@ -48,6 +48,7 @@ public class BlogListController {
         model.addAttribute("blogList",blogList);
         String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/blog-list");
         model.addAttribute("pageStr",pageStr);
-        return "themes/default/index";
+        /*return "themes/default/index";*/
+        return THEME+"/index";
     }
 }
