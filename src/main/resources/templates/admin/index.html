@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h4 class="page-title">Tale仪表盘</h4>
+                        <h4 class="page-title">仪表盘</h4>
                     </div>
 
                     <div class="row">
@@ -18,7 +18,7 @@
                             <div class="mini-stat clearfix bx-shadow bg-info">
                                 <span class="mini-stat-icon"><i class="fa fa-quote-right" aria-hidden="true"></i></span>
                                 <div class="mini-stat-info text-right">
-                                    发表了<span class="counter">${statistics.articles}</span>篇文章
+                                    发表了<span class="counter" th:text="${blognum}"></span>篇文章
                                 </div>
                             </div>
                         </div>
@@ -59,13 +59,12 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group">
-                                        #for(article : articles)
-                                        <li class="list-group-item">
-                            <span class="badge badge-primary"
-                                  title="${article.comments_num}条评论">${article.comments_num}</span>
-                                            <a target="_blank" href="${site_url('/article/')}${article.cid}">${article.title}</a>
+
+                                        <li class="list-group-item" th:each="blog:${lastestBlogs}">
+                                            <span class="badge badge-primary"
+                                                  title="${article.comments_num}条评论">1</span>
+                                                            <a target="_blank" th:href="@{'/blog/'+${blog.id}}" th:text="${blog.title}"></a>
                                         </li>
-                                        #end
                                     </ul>
                                 </div>
                             </div>

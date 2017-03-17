@@ -46,5 +46,12 @@ public interface IBlogService {
     //查询最大的id
     int findMaxId();
 
+    //添加博客和分类的关联
     void addBlogTag(int blogid,int tagid);
+
+    //删除博客
+    void delBlog(int id);
+
+    //更新博客
+    void updateBlog(Blog blog);
 }

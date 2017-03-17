@@ -92,4 +92,24 @@ public class BlogServiceImpl implements IBlogService {
     public void addBlogTag(int blogid, int tagid) {
         blogMapper.addBlogTag(blogid,tagid);
     }
+
+    @Override
+    public void delBlog(int id) {
+        blogMapper.delBlogById(id);
+        blogMapper.delBlogTagRecord(id);
+    }
+
+    @Override
+    public void updateBlog(Blog blog) {
+        List<Tag> tagList = tagMapper.findAllTags();
+        int tagid = -1;
+        for (Tag t:tagList) {
+            if (t.getTagname().trim().equals(blog.getTags().trim())){
+                tagid = t.getId();
+                break;
+            }
+        }
+        blogMapper.updateBlog(blog);
+        blogMapper.updateBlogTagRecord(blog.getId(),tagid);
+    }
 }

@@ -35,9 +35,9 @@
                                     <td th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">测试测试</td>
                                     <td th:text="${blog.createBy}">测试测试</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm waves-effect waves-light m-b-5">
+                                        <a href="#" th:href="@{'/admin/article/publish/'+${blog.id}}" class="btn btn-primary btn-sm waves-effect waves-light m-b-5">
                                             <i class="fa fa-edit"></i> <span>编辑</span></a>
-                                        <a href="#" class="btn btn-danger btn-sm waves-effect waves-light m-b-5">
+                                        <a href="#" th:href="@{'/admin/article-del/'+${blog.id}}" class="btn btn-danger btn-sm waves-effect waves-light m-b-5">
                                             <i class="fa fa-trash-o"></i> <span>删除</span></a>
                                         <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" th:href="@{'/blog/'+${blog.id}}" href="#" target="_blank">
                                             <i class="fa fa-rocket"></i> <span>预览</span></a>

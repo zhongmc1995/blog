@@ -1,10 +1,7 @@
 package com.zhongmc.blog.dao;
 
 import com.zhongmc.blog.domain.Blog;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -61,4 +58,20 @@ public interface BlogMapper {
     //加入博客和分类的关系表
     @Insert("insert into tbl_blog_tag(blogid,tagid) values(#{blogid},#{tagid})")
     void addBlogTag(@Param("blogid")int blogid,@Param("tagid") int tagid);
+
+    //删除单条博客
+    @Delete("delete from tbl_blog where id=#{id}")
+    void delBlogById(int id);
+
+    //删除博客和分类的关联记录
+    @Delete("delete from tbl_blog_tag where blogid=#{blogid}")
+    void delBlogTagRecord(int blogid);
+
+    //更新博客
+    @Update("update tbl_blog set title=#{title},keywords=#{keywords},content=#{content},updatetime=#{updateTime},updateby=#{updateBy} where id=#{id}")
+    void updateBlog(Blog blog);
+
+    //更新博客和分类的关联
+    @Update("update tbl_blog_tag set tagid=#{tagid} where blogid=#{blogid}")
+    void updateBlogTagRecord(@Param("blogid") int blogid,@Param("tagid") int tagid);
 }
