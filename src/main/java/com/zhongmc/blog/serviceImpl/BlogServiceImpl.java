@@ -1,7 +1,9 @@
 package com.zhongmc.blog.serviceImpl;
 
 import com.zhongmc.blog.dao.BlogMapper;
+import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
+import com.zhongmc.blog.domain.Tag;
 import com.zhongmc.blog.service.IBlogService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class BlogServiceImpl implements IBlogService {
     @Autowired
     private BlogMapper blogMapper;
 
+    @Autowired
+    private TagMapper tagMapper;
     @Override
     public List<Blog> findAllBlog() {
         return blogMapper.findAllBlog();
@@ -63,5 +67,29 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public List<Blog> getLastestBlogs(int num) {
         return blogMapper.getLastestBlogs(num);
+    }
+
+    @Override
+    public void addABlog(Blog blog) {
+        blogMapper.addABlog(blog);
+        List<Tag> tagList = tagMapper.findAllTags();
+        int tagid = -1;
+        for (Tag t:tagList) {
+            if (t.getTagname().trim().equals(blog.getTags().trim())){
+                tagid = t.getId();
+                break;
+            }
+        }
+        blogMapper.addBlogTag(blog.getId(),tagid);
+    }
+
+    @Override
+    public int findMaxId() {
+        return  blogMapper.findMaxId();
+    }
+
+    @Override
+    public void addBlogTag(int blogid, int tagid) {
+        blogMapper.addBlogTag(blogid,tagid);
     }
 }

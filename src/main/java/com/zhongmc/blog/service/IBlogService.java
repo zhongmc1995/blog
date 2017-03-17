@@ -40,4 +40,11 @@ public interface IBlogService {
     //查找出最新的博客num篇
     List<Blog> getLastestBlogs(int num);
 
+    //添加博客
+    void addABlog(Blog blog);
+
+    //查询最大的id
+    int findMaxId();
+
+    void addBlogTag(int blogid,int tagid);
 }

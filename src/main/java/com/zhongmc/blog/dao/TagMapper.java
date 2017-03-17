@@ -28,4 +28,5 @@ public interface TagMapper {
     //
     @Select("select * from tbl_tag where id = #{tagid}")
     Tag findOneById(Integer tagid);
+
 }

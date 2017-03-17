@@ -1,6 +1,7 @@
 package com.zhongmc.blog.dao;
 
 import com.zhongmc.blog.domain.Blog;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -48,4 +49,16 @@ public interface BlogMapper {
     //筛选最新的blogs
     @Select("select id,title from tbl_blog order by createtime desc limit 0,#{num}")
     List<Blog> getLastestBlogs(int num);
+
+    //添加博客
+    @Select("insert into tbl_blog(id,title,content,keywords,createtime,createby) values(#{id},#{title},#{content},#{keywords},#{createTime},#{createBy})")
+    void addABlog(Blog blog);
+
+    //查询最大的id
+    @Select("select MAX(id) from tbl_blog")
+    int findMaxId();
+
+    //加入博客和分类的关系表
+    @Insert("insert into tbl_blog_tag(blogid,tagid) values(#{blogid},#{tagid})")
+    void addBlogTag(@Param("blogid")int blogid,@Param("tagid") int tagid);
 }

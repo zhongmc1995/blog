@@ -1,6 +1,5 @@
 package com.zhongmc.blog.controller;
 
-import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
@@ -30,6 +29,7 @@ public class IndexController extends BaseController {
         return "redirect:/blog-list";
     }
 
+    //初始化标签数量
     private List<Tag> InitTagBlogNum(List<Tag> tagList){
         if (tagList!=null){
             for (Tag tag:tagList) {
@@ -68,10 +68,17 @@ public class IndexController extends BaseController {
         }
         return tmp;
     }*/
+    //每页底部的最新博客数据
     @RequestMapping("/footer-data")
     @ResponseBody
     public List<Blog> initFooterData(){
         List<Blog> lastersBlogs = blogService.getLastestBlogs(4);//获取四条最新的blog
         return lastersBlogs;
+    }
+
+    //友情链接
+    @RequestMapping("/links")
+    public String linksPages(){
+        return THEME+"/links";
     }
 }

@@ -37,7 +37,7 @@ public class ArchiveController extends BaseController {
             }
         }
         // 2016/12 2017/1
-        Map<String,List<Blog>> newMap = new HashMap<String,List<Blog>>();
+        Map<String,List<Blog>> newMap = new HashMap<>();
         for (Map.Entry<String,Integer> en: tmp.entrySet()) {
             String date = en.getKey();
             List<Blog> blogList = new ArrayList<>();

@@ -1,11 +1,18 @@
-#include('./header.html', {title: '友情链接'})
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--包含头模块-->
+<head th:include="themes/default/header::header" />
+<body>
+<header class="header bg-white" th:include="themes/default/nav::nav"></header>
 <article class="main-content post-page">
     <div id="post-content" class="post-content">
         <h3>友情链接</h3>
         <ul class="flinks">
-            #for(link : links)
-            <li>🔒 <a href="${link.slug}" target="_blank">${link.name}</a></li>
-            #end
+            <li>🔒 <a href="https://www.github.com/zhongmc1995/" target="_blank">钟明城的GitHub</a></li>
+            <li>
+                🔒 <a class="social csdn" target="blank" href="http://blog.csdn.net/airmario?viewmode=list">CSDN</a>
+            </li>
         </ul>
         <h3>链接须知</h3>
         <blockquote>
@@ -18,11 +25,10 @@
         <p>备注：默认申请友情链接均为内页（当前页面）</p>
         <h3>基本信息</h3>
         <pre><code class="lang-md hljs markdown">
-                网站名称：TaleBlog
-                网站地址：tale.biezhi.me</code></pre>
+                网站名称：Z.M.C</code></pre>
 
         <p>请在当页通过评论来申请友链，其他地方不予回复</p>
         <p>暂时先这样，同时欢迎互换友链，这个页面留言即可。 ^_^</p>
         <p>还有，我会不定时对无法访问的网址进行清理，请保证自己的链接长期有效。</p></div>
 </article>
-#include('./footer.html')
+</body>

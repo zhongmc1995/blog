@@ -1,0 +1,96 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="admin/header::header">
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+    <div th:include="admin/common::common"></div>
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">
+                            文章发布
+                        </h4>
+                    </div>
+                    <div class="col-md-12">
+                        <form role="form">
+                            <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                                <input type="text" id="title" class="form-control" placeholder="请输入文章标题（必须）" name="title" required/>
+                            </div>
+                            <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                                <select class="form-control" id="categroy">
+                                    <option th:each="tag:${tagList}" th:value="${tag.tagname}" selected th:text="${tag.tagname}">默认分类</option>
+                                   <!-- <option value="Java">Java</option>
+                                    <option value="数据库">数据库</option>-->
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
+                                <textarea id="keyword" class="form-control" rows="3" required placeholder="概述"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-6">
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                            <textarea style="height: 350px" autocomplete="off" id="content" name="text">
+
+                            </textarea>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="text-right">
+                                <a class="btn btn-default waves-effect waves-light" href="/admin/article">返回列表</a>
+                                <button id="submit_article" type="submit" class="btn btn-primary waves-effect waves-light">
+                                    保存文章
+                                </button>
+                                <button type="button" class="btn btn-warning waves-effect waves-light"
+                                        onclick="subArticle('draft');">
+                                    存为草稿
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/plugings/wangEditor/dist/js/wangEditor.js"></script>
+<script>
+    var editor = new wangEditor('content');
+    editor.create();
+    $('#submit_article').click(function () {
+        var title = $('#title').val();
+        var categroy = $('#categroy option:selected').val();
+        var keyword = $('#keyword').val();
+        var content = $('#content').val();
+
+        var blog = new Object();
+        blog.title = title;
+        blog.tags = categroy;
+        blog.keywords = keyword;
+        blog.content = content;
+        console.log(blog);
+        $.ajax({
+            url:'/admin/add-article',
+            type:'POST',
+            async:true,
+            data : blog,
+            success:function (data) {
+                if (data===-1){
+                    alert("fail");
+                }else if(data==1) {
+                    alert("success");
+                }
+            }
+        });
+    });
+</script>
+</body>
+</ht
