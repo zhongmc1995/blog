@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="admin/header::header">
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+    <div th:include="admin/common::common"></div>
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">
+                            文章列表
+                        </h4>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th width="20%">标题</th>
+                                    <th width="40%">分类</th>
+                                    <th>发布时间</th>
+                                    <th>作者</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="blog,userStat :${blogList}">
+                                    <td th:text="${userStat.index+1}"></td>
+                                    <td th:text="${blog.title}">测试测试</td>
+                                    <td th:text="${blog.keywords}">测试测试</td>
+                                    <td th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">测试测试</td>
+                                    <td th:text="${blog.createBy}">测试测试</td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-sm waves-effect waves-light m-b-5">
+                                            <i class="fa fa-edit"></i> <span>编辑</span></a>
+                                        <a href="#" class="btn btn-danger btn-sm waves-effect waves-light m-b-5">
+                                            <i class="fa fa-trash-o"></i> <span>删除</span></a>
+                                        <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" th:href="@{'/blog/'+${blog.id}}" href="#" target="_blank">
+                                            <i class="fa fa-rocket"></i> <span>预览</span></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

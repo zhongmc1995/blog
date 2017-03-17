@@ -16,12 +16,13 @@
                         </h4>
                     </div>
                     <div class="col-md-12">
-                        <form role="form">
+                        <form role="form" action="/admin/add-article">
                             <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                                <input type="text" id="title" class="form-control" placeholder="请输入文章标题（必须）" name="title" required/>
+                                <input type="text" id="title" class="form-control" placeholder="请输入文章标题（必须）" name="title"/>
                             </div>
+
                             <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                                <select class="form-control" id="categroy">
+                                <select class="form-control" id="categroy" name="tags">
                                     <option th:each="tag:${tagList}" th:value="${tag.tagname}" selected th:text="${tag.tagname}">默认分类</option>
                                    <!-- <option value="Java">Java</option>
                                     <option value="数据库">数据库</option>-->
@@ -29,7 +30,7 @@
                             </div>
 
                             <div class="form-group col-md-12" style="padding: 0 10px 0 0;">
-                                <textarea id="keyword" class="form-control" rows="3" required placeholder="概述"></textarea>
+                                <textarea id="keyword" name="keywords" class="form-control" rows="3" required placeholder="概述"></textarea>
                             </div>
 
                             <div class="form-group col-md-6">
@@ -37,7 +38,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group">
-                            <textarea style="height: 350px" autocomplete="off" id="content" name="text">
+                            <textarea style="height: 350px" name="content" autocomplete="off" id="content">
 
                             </textarea>
                             </div>
@@ -49,8 +50,7 @@
                                 <button id="submit_article" type="submit" class="btn btn-primary waves-effect waves-light">
                                     保存文章
                                 </button>
-                                <button type="button" class="btn btn-warning waves-effect waves-light"
-                                        onclick="subArticle('draft');">
+                                <button type="button" class="btn btn-warning waves-effect waves-light">
                                     存为草稿
                                 </button>
                             </div>
@@ -65,11 +65,23 @@
 <script>
     var editor = new wangEditor('content');
     editor.create();
-    $('#submit_article').click(function () {
+    /*$('#submit_article').click(function () {
         var title = $('#title').val();
+        if(title===''){
+            alert('标题不能为空');
+            return;
+        }
         var categroy = $('#categroy option:selected').val();
         var keyword = $('#keyword').val();
-        var content = $('#content').val();
+        if(keyword===''){
+            alert('概述不能为空');
+            return;
+        }
+        var content = $('#content').val().trim();
+        if(content===''){
+            alert('内容不能为空');
+            return;
+        }
 
         var blog = new Object();
         blog.title = title;
@@ -90,7 +102,7 @@
                 }
             }
         });
-    });
+    });*/
 </script>
 </body>
-</ht
+</html>

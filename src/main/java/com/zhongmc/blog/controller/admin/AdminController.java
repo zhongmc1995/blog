@@ -39,9 +39,8 @@ public class AdminController {
         return "admin/article_edit";
     }
 
-    @RequestMapping(value = "add-article")
-    @ResponseBody
-    public int addArticle(Blog blog){
+    @RequestMapping(value = "/add-article")
+    public String addArticle(Blog blog){
         if (blog!=null){
             try{
                 Date date = new Date();
@@ -51,12 +50,18 @@ public class AdminController {
                 blog.setCreateBy("zhongmc");
                 blogService.addABlog(blog);
             }catch (Exception e){
-                return -1;
+                return "500";
             }
         }
-        return 1;
+        return "redirect:/admin/article";
     }
 
+    @RequestMapping(value = "/article")
+    public String articleListPage(Model model){
+        List<Blog> blogList = blogService.findAllBlog();
+        model.addAttribute("blogList",blogList);
+        return "admin/article_list";
+    }
     /*public static void main(String[] args) {
         long t  = System.currentTimeMillis();
         System.out.print(t);
