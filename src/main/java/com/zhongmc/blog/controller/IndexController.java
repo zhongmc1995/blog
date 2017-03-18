@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -48,13 +50,13 @@ public class IndexController extends BaseController {
     }
 
     //获取每月的博客
-    /*@RequestMapping("/getMonthBlogs")
+    @RequestMapping("/getMonthBlogs")
     @ResponseBody
     public Map<String,Integer> getMonthBlogs(){
         Map<String,Integer> tmp = new HashMap<>();
         //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
-        List<Blog> ll = blogMapper.findAllBlog();
+        List<Blog> ll = blogService.findAllBlog();
         for (Blog b:ll) {
             Date bdate = b.getCreateTime();
             String dateStr = simpleDateFormat.format(bdate);
@@ -67,7 +69,7 @@ public class IndexController extends BaseController {
             }
         }
         return tmp;
-    }*/
+    }
     //每页底部的最新博客数据
     @RequestMapping("/footer-data")
     @ResponseBody

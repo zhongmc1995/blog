@@ -22,6 +22,7 @@ $('#blog_sort').on('click',function () {
 
 var ul2_firstClick = true;
 $('#blog_msort').on('click',function () {
+    console.log("ddddd");
     if (ul2_firstClick){
         $.ajax({
             url : '/getMonthBlogs',
@@ -35,6 +36,18 @@ $('#blog_msort').on('click',function () {
         });
         ul2_firstClick = false;
     }
-
+});
+$(document).ready(function(){
+    $.ajax({
+        url : '/getMonthBlogs',
+        type:'get',
+        dataType:'json',
+        success:function (data,textStatus,jqXHR) {
+            $.each(data, function(key, value) {
+                //<a href="#"><li><p>一月</p><p>2016</p></li></a>
+                $('#ul2').append("<a href='/blogs/"+key+"'><li><p>"+key+"("+value+")</p></li></a>");
+            });
+        }
+    });
 });
 

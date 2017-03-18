@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="themes/simple/header::header"></head>
+<body>
+
+<div th:include="themes/simple/common::common"></div>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="article-block">
+                <div class="article-block-img">
+                    <img class="img-responsive center-block" src="/user/img/simple/bg1.jpg" ondragstart="return false;">
+                    <h2>哈哈哈哈哈哈哈哈哈哈哈</h2>
+                </div>
+                <div class="article-block-author">
+                    <div class="header-box"><img src="/user/img/simple/head.png" ondragstart="return false;"></div>
+                    <div class="author-box">
+                        <p th:text="${blog.createBy}">Viosey</p>
+                        <p th:text="${#dates.format(blog.createTime,'yyyy-MM--dd')}">1月 20, 2017</p>
+                    </div>
+                    <div class="tag">
+                        <p style="color:black">标签&nbsp&nbsp
+                            <a th:each="tag:${blog.tagList}" th:href="@{'/tag-blogs/'+${tag.id}}" th:text="${tag.tagname}">
+
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="article-page" th:utext="${blog.content}"></div>
+            </div>
+
+            <div class="page">
+                <div class="page-btn btn-left"><img src="/user/img/simple/left.png"  ondragstart="return false;"></div>
+                <p class="btn-p btn-p-left">旧篇</p>
+                <div class="page-btn btn-right"><img src="/user/img/simple/right.png "  ondragstart="return false;"></div>
+                <p class="btn-p btn-p-right">新篇</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="foot" th:include="themes/simple/footer::footer"></div>
+</body>
+</html>

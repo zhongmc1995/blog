@@ -5,5 +5,5 @@ package com.zhongmc.blog.controller;
  */
 public class BaseController {
     //默认主题
-    public static String THEME="themes/default";
+    public static String THEME="themes/simple";
 }

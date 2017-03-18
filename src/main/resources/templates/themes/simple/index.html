@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="themes/simple/header::header"></head>
+<body>
+
+<div th:include="themes/simple/common::common"></div>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="article-block" th:each="blog:${blogList}">
+                <div class="article-block-img">
+                    <img class="img-responsive center-block" src="/user/img/simple/bg1.jpg" ondragstart="return false;">
+                    <h2 th:text="${#strings.length(blog.title)>28 ? #strings.substring(blog.title,0,25)+'...':blog.title}">哈哈哈哈哈哈哈哈哈哈哈</h2>
+                </div>
+                <div class="article-block-title">
+                    <p th:text="${#strings.length(blog.keywords)>50 ? #strings.substring(blog.keywords,0,50)+'...':blog.keywords}"></p>
+                    <a href="#" th:href="@{'/blog/'+${blog.id}}">继续阅读</a>
+                </div>
+                <div class="article-block-author">
+                    <div class="header-box"><img src="/user/img/simple/head.png" ondragstart="return false;"></div>
+                    <div class="author-box">
+                        <p th:text="${blog.createBy}">Viosey</p>
+                        <p th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}"></p>
+                    </div>
+                    <div class="tag">
+                    </div>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="lists-navigator clearfix">
+                    <ol class="lists-navigator clearfix" th:utext="${pageStr}"></ol>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="foot" th:include="themes/simple/footer::footer"></div>
+</body>
+</html>

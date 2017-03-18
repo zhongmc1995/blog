@@ -1,0 +1,24 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="themes/simple/header::header"></head>
+<body>
+
+<div th:include="themes/simple/common::common"></div>
+
+<div class="container" >
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="cloud">
+                <a href="#" th:each="tag,status:${tagList}" th:class="${'btn btn-default cloud-block taglink-'+status.index%4}"
+                   th:text="${tag.tagname}" th:href="@{'/tag-blogs/'+${tag.id}}" >2017</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="foot" th:include="themes/simple/footer::footer"></div>
+
+</body>
+</html>
