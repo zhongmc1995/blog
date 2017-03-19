@@ -1,6 +1,5 @@
 package com.zhongmc.blog.controller.admin;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
 import com.zhongmc.blog.service.IBlogService;
@@ -44,7 +43,6 @@ public class AdminController {
         model.addAttribute("tagList",tagList);
         return "admin/article_edit";
     }
-
     //博客添加操作
     @RequestMapping(value = "/add-article")
     public String addArticle(Blog blog){
@@ -56,7 +54,6 @@ public class AdminController {
                 blog.setCreateTime(date);
                 blog.setCreateBy("zhongmc");
                 blogService.addABlog(blog);
-
         }
         return "redirect:/admin/article";
     }
@@ -98,9 +95,7 @@ public class AdminController {
     @RequestMapping(value = "/article/update")
     public String articleUpdate(Blog blog){
         blogService.updateBlog(blog);
-
         return "redirect:/admin/article";
     }
-
 
 }
