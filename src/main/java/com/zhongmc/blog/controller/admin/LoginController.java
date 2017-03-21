@@ -4,9 +4,7 @@ import com.zhongmc.blog.domain.SessionData;
 import com.zhongmc.blog.domain.User;
 import com.zhongmc.blog.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,7 +52,7 @@ public class LoginController {
         }
 
     }
-    class Message{
+    static class Message{
         private boolean result;
 
         public boolean getResult() {

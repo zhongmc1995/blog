@@ -4,6 +4,7 @@ import com.zhongmc.blog.dao.TagMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
 import com.zhongmc.blog.service.IBlogService;
+import com.zhongmc.blog.service.IThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,12 @@ public class IndexController extends BaseController {
     @Autowired
     TagMapper tagMapper;
 
-
+    @Autowired
+    IThemeService themeService;
     @RequestMapping("/")
     public String index(){
+        String theme = themeService.getCurrentTheme();
+        THEME = "themes/" + theme;
         return "redirect:/blog-list";
     }
 
@@ -53,7 +57,7 @@ public class IndexController extends BaseController {
     @RequestMapping("/getMonthBlogs")
     @ResponseBody
     public Map<String,Integer> getMonthBlogs(){
-        Map<String,Integer> tmp = new HashMap<>();
+        Map<String,Integer> tmp = new TreeMap<>();
         //将博客归档 sql数据库层归档SELECT DATE_FORMAT(tbl_blog.createtime,'%Y-%m') AS t,COUNT(*) AS n FROM tbl_blog GROUP BY t ORDER BY t DESC
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
         List<Blog> ll = blogService.findAllBlog();
@@ -83,4 +87,5 @@ public class IndexController extends BaseController {
     public String linksPages(){
         return THEME+"/links";
     }
+
 }

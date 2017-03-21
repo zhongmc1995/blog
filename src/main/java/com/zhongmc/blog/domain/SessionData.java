@@ -5,5 +5,5 @@ package com.zhongmc.blog.domain;
  */
 public class SessionData {
     public static final String SESSION_KEY = "userInfo";
-
+    public static  final  String THEME_KEY = "theme_name";
 }

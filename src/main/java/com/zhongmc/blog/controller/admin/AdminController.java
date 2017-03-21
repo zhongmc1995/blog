@@ -98,4 +98,23 @@ public class AdminController {
         return "redirect:/admin/article";
     }
 
+
+    //设置主题
+    @RequestMapping(value = "/themes")
+    public LoginController.Message setTheme(){
+        LoginController.Message message = new LoginController.Message();
+
+        return  message;
+    }
+    //标签
+    @RequestMapping("/category")
+    public String toCategoryPage(){
+        return "/admin/category";
+    }
+
+    //系统设置
+    @RequestMapping("/setting")
+    public String toSettingsPage(){
+        return "/admin/settings";
+    }
 }
