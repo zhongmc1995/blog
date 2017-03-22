@@ -1,15 +1,20 @@
 package com.zhongmc.blog.controller.admin;
 
+import com.zhongmc.blog.controller.BaseController;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
+import com.zhongmc.blog.domain.Theme;
 import com.zhongmc.blog.service.IBlogService;
 import com.zhongmc.blog.service.ITagServive;
+import com.zhongmc.blog.service.IThemeService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 import java.util.List;
@@ -19,11 +24,13 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BaseController {
     @Autowired
     ITagServive tagServive;
     @Autowired
     IBlogService blogService;
+    @Autowired
+    IThemeService themeService;
     //管理首页
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String toEditPage(Model model){
@@ -114,7 +121,33 @@ public class AdminController {
 
     //系统设置
     @RequestMapping("/setting")
-    public String toSettingsPage(){
+    public String toSettingsPage(Model model){
+        //博客主题选择
+        String themename = themeService.getCurrentTheme();
+        List<Theme> themes = themeService.getAllThemes();
+        model.addAttribute("current",themename);
+        model.addAttribute("themes",themes);
         return "/admin/settings";
+    }
+    //系统设置
+    @RequestMapping("/dosetting")
+    @ResponseBody
+    public LoginController.Message doSettings(Theme theme){
+        LoginController.Message message = new LoginController.Message();
+        message.setResult(false);
+        message.setMsgInfo("设置失败");
+        try{
+            if (null!=theme){
+                String currentTheme = THEME.substring(THEME.indexOf("/")+1);
+                themeService.updataThemeStatus("0",currentTheme);//设置当前主题为不用
+                THEME = "themes/"+theme.getThemename();
+                themeService.updataThemeStatus("1",theme.getThemename());
+                message.setResult(true);
+                message.setMsgInfo("设置成功");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return message;
     }
 }

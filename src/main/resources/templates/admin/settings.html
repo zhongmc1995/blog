@@ -47,14 +47,15 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">博客主题</label>
                                         <div class="col-md-9">
-                                            <select name="site_theme" class="form-control">
-                                                <option value="default" selected >默认主题</option>
+                                            <select id="site_theme" name="site_theme" class="form-control">
+                                                <option th:each="theme:${themes}" th:text="${theme.themename}" th:value="${theme.themename}"
+                                                        selected >默认主题</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group" style="text-align: center">
-                                            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveSetting()">
+                                            <button id="leftbtn" type="button" class="btn btn-primary waves-effect waves-light">
                                                 保存设置
                                             </button>
 
@@ -112,8 +113,6 @@
 
                     <div class="clearfix"></div>
 
-
-
                 </div>
             </div>
         </div>
@@ -122,6 +121,22 @@
 <script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
 <script type="text/javascript">
 
+    $('#leftbtn').click(function () {
+        var themename = $('#site_theme').val();
+        var theme = new Object();
+        theme.themename = themename;
+        $.ajax({
+            url : "/admin/dosetting",
+            type : "post",
+            data : theme,
+            success : function (msg) {
+                if (msg.result)
+                    swal('提示信息', msg.msgInfo, 'success');
+                else
+                    swal('提示信息', msg.msgInfo, 'error');
+            }
+        });
+    });
     /**
      * 保存全局设置
      */
