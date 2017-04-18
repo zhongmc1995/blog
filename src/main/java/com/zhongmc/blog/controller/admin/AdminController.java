@@ -70,7 +70,7 @@ public class AdminController extends BaseController {
     public String articleListPage(Model model){
         List<Blog> blogList = blogService.findAllBlog();
         model.addAttribute("blogList",blogList);
-        return "/admin/article_list";
+        return "admin/article_list";
     }
 
     //博客删除
@@ -95,7 +95,7 @@ public class AdminController extends BaseController {
 
         List<Tag>tagList = tagServive.findAllTags();
         model.addAttribute("tagList",tagList);
-        return "/admin/article_edit";
+        return "admin/article_edit";
     }
 
     //博客更新
@@ -116,7 +116,7 @@ public class AdminController extends BaseController {
     //标签
     @RequestMapping("/category")
     public String toCategoryPage(){
-        return "/admin/category";
+        return "admin/category";
     }
 
     //系统设置
@@ -127,7 +127,7 @@ public class AdminController extends BaseController {
         List<Theme> themes = themeService.getAllThemes();
         model.addAttribute("current",themename);
         model.addAttribute("themes",themes);
-        return "/admin/settings";
+        return "admin/settings";
     }
     //系统设置
     @RequestMapping("/dosetting")

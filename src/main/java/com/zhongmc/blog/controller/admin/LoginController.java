@@ -20,7 +20,7 @@ public class LoginController {
     //管理员登陆
     @RequestMapping(value = "/login")
     public String toLoginPage(){
-        return "/admin/login";
+        return "admin/login";
     }
     @RequestMapping(value = "/dologin")
     @ResponseBody

@@ -19,63 +19,7 @@
             <textarea name="text" id="textarea" class="form-control" placeholder="基佬，留下你的评论." required></textarea>
             <button type="submit" class="submit" id="misubmit">提交</button>
         </form>
-
-        <!--<span class="response">评论已关闭.</span>-->
-
-        <!--<ol class="comment-list">
-            <li id="li-comment-${comment.coid}" class="comment-body comment-parent comment-odd">
-                <div id="comment-${comment.coid}">
-                    <div class="comment-view" onclick="">
-                        <div class="comment-header">
-                            <img class="avatar" src="${gravatar(comment.mail)}?s=80&r=G&d=" title="${comment.author}"
-                                 width="80" height="80">
-                            <span class="comment-author">
-                                <a href="${comment.url}" target="_blank" rel="external nofollow">${comment.author}</a>
-                            </span>
-                        </div>
-                        <div class="comment-content">
-                            <span class="comment-author-at"></span>
-                            <p>${article(comment.content)}</p>
-                        </div>
-                        <div class="comment-meta">
-                            <time class="comment-time">${fmtdate(comment.created)}</time>
-                            <span class="comment-reply">
-                                <a rel="nofollow" onclick="TaleComment.reply('${comment.coid}');">回复</a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-children">
-                    <ol class="comment-list">
-                        <li id="li-comment-${child.coid}"
-                            class="comment-body comment-child comment-level-odd comment-odd">
-                            <div id="comment-${child.coid}">
-                                <div class="comment-view">
-                                    <div class="comment-header">
-                                        <img class="avatar" src="${gravatar(child.mail)}?s=80&r=G&d=" title="${child.author}" width="80" height="80">
-                                        <span class="comment-author comment-by-author">
-                                            <a href="${child.url}" target="_blank" rel="external nofollow">${child.author}</a>
-                                        </span>
-                                    </div>
-                                    <div class="comment-content">
-                                        <span class="comment-author-at">
-                                            ${comment_at(child.parent)}
-                                        </span>
-                                        <p>${article(child.content)}</p>
-                                    </div>
-                                    <div class="comment-meta">
-                                        <time class="comment-time">${fmtdate(child.created)}</time>
-                                        <span class="comment-reply">
-                                            <a rel="nofollow" onclick="TaleComment.reply('${child.coid}');">回复</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ol>
-                </div>
-            </li>
-        </ol>-->
+        <!-- 评论分页 -->
         <div class="lists-navigator clearfix">
             <ol class="page-navigator">
 
