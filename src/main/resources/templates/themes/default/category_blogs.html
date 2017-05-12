@@ -9,10 +9,10 @@
     <div class="post-lists">
         <div class="post-lists-body">
             <!--#for(article : articles.list)-->
-            <div class="post-list-item" th:each="blog:${blogList}">
+            <div class="post-list-item" th:each="blog,status:${blogList}">
                 <div class="post-list-item-container">
                     <a th:href="@{'/blog/'+${blog.id}}" class="item-thumb bg-deepgrey"
-                       style="background-image:url(/images/pic01.jpg);">
+                       th:style="'background-image:url(/user/img/rand/'+${status.index%19+1}+'.jpg)'">
                         <dir class="item-desc" th:text="${blog.keywords}" >dsfs</dir>
                     </a>
                     <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>

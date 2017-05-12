@@ -3,6 +3,7 @@ package com.zhongmc.blog.controller;
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.service.IBlogService;
+import com.zhongmc.blog.service.IThemeService;
 import com.zhongmc.blog.utils.Page;
 import com.zhongmc.blog.utils.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +23,18 @@ import java.util.Map;
 public class BlogListController extends BaseController {
     @Autowired
     IBlogService blogService;
+    @Autowired
+    IThemeService themeService;
 
-    @RequestMapping("/blog-list")
+    //@RequestMapping("/blog-list")
+    @RequestMapping("/")
     public String blogList(Model model, HttpServletRequest request){
+        String theme = themeService.getCurrentTheme();
+        THEME = "themes/" + theme;
         int totalSize = blogService.Count();
         Page<Blog> blogPage = new Page<>();
         blogPage.setTotalRecord(totalSize);
-
         String page = request.getParameter("page");
-        /*if (page!=null){
-            index = Integer.parseInt(page);
-            if (index<1){
-                index = 1;
-            }else if (index>blogPage.getTotalPage()){
-                index = blogPage.getTotalPage();
-            }
-        }*/
         int index = PagingUtil.fixIndex(page,blogPage.getTotalPage());
         blogPage.setPageNo(index);
         int startIndex = blogPage.getPageSize()*(blogPage.getPageNo()-1);
@@ -46,9 +43,8 @@ public class BlogListController extends BaseController {
         tmp.put("pageSize",blogPage.getPageSize());
         List<Blog> blogList = blogService.findBlogsByPage(tmp);
         model.addAttribute("blogList",blogList);
-        String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/blog-list");
+        String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/");
         model.addAttribute("pageStr",pageStr);
-        /*return "themes/default/index";*/
         return THEME+"/index";
     }
 }

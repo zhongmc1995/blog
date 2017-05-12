@@ -28,12 +28,12 @@ public class IndexController extends BaseController {
 
     @Autowired
     IThemeService themeService;
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String index(){
         String theme = themeService.getCurrentTheme();
         THEME = "themes/" + theme;
         return "redirect:/blog-list";
-    }
+    }*/
 
     //初始化标签数量
     private List<Tag> InitTagBlogNum(List<Tag> tagList){

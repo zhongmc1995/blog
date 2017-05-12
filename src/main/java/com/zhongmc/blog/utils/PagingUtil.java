@@ -19,7 +19,7 @@ public class PagingUtil {
 
         StringBuffer sb = new StringBuffer("");
         if (maxPageNo>1){
-            sb.append(currentPageNo <= 1 ? "<li><a href=\"#\" class=\"disabled\">←</a></li>" : "<li><a href=\""+url+"?page="+((currentPageNo-1)>1?(currentPageNo-1):1)+"\" class=\"button\">←</a></li>");
+            sb.append(currentPageNo <= 1 ? "<li></li>" : "<li><a href=\""+url+"?page="+((currentPageNo-1)>1?(currentPageNo-1):1)+"\" class=\"button\">←</a></li>");
 
             if (maxPageNo<=7){
                 for (int i = begainNo; i <= endNo; i++) {
@@ -63,7 +63,7 @@ public class PagingUtil {
                 }
 
             }
-            sb.append(maxPageNo==currentPageNo?"<li><a href=\"#\" class=\"disabled\">→</a></li>":"<li><a href=\""+url+"?page="+(currentPageNo+1>maxPageNo?maxPageNo:currentPageNo+1)+"\" class=\"\">→</a></li>");
+            sb.append(maxPageNo==currentPageNo?"<li></li>":"<li><a href=\""+url+"?page="+(currentPageNo+1>maxPageNo?maxPageNo:currentPageNo+1)+"\" class=\"\">→</a></li>");
         }
 
         return  sb.toString();
