@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Page<T> {
     private int pageNo = 1;// 页码，默认是第一页
-    private int pageSize = 9;// 每页显示的记录数，默认是10
+    private int pageSize = 3;// 每页显示的记录数，默认是9
     private int totalRecord;// 总记录数
     private int totalPage;// 总页数
     private boolean getAllRecord;// 是否获取所有记录

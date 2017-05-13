@@ -43,7 +43,9 @@ public class BlogListController extends BaseController {
         tmp.put("pageSize",blogPage.getPageSize());
         List<Blog> blogList = blogService.findBlogsByPage(tmp);
         model.addAttribute("blogList",blogList);
-        String pageStr = PagingUtil.getPagelink(index,(blogPage.getTotalRecord()/blogPage.getPageSize())+1,"","/");
+        int maxMode = (blogPage.getTotalRecord()%blogPage.getPageSize());
+        int maxNo = maxMode==0 ? (blogPage.getTotalRecord()/blogPage.getPageSize()):(blogPage.getTotalRecord()/blogPage.getPageSize())+1;
+        String pageStr = PagingUtil.getPagelink(index,maxNo,"","/");
         model.addAttribute("pageStr",pageStr);
         return THEME+"/index";
     }
