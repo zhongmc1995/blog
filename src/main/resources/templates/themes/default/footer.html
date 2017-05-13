@@ -32,10 +32,10 @@
             </div>
 
             <div class="meta-item meta-comments">
-
+                <div id="top-btn" style="width: 30px;height: 30px;float:right;cursor: pointer;display: block"><img src="/user/img/toTop.png" style="width: 100%"></div>
             </div>
         </div>
-    </div>
+    </div>apple-touch-icon
     <script>
         $(document).ready(function () {
             $.ajax({
@@ -52,6 +52,11 @@
 
                 }
             });
+        });
+        $("#top-btn").click(function () {
+            $('html,body').animate({
+                scrollTop:0
+            },500);
         });
     </script>
 </footer>
