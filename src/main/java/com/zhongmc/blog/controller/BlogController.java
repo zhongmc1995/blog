@@ -2,6 +2,7 @@ package com.zhongmc.blog.controller;
 
 import com.zhongmc.blog.dao.BlogMapper;
 import com.zhongmc.blog.domain.Blog;
+import com.zhongmc.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,11 @@ import java.util.List;
 public class BlogController extends BaseController {
 
     @Autowired
-    BlogMapper blogMapper;
+    IBlogService blogService;
 
     @RequestMapping("/blog/detail/{id}")
     public String blogView(@PathVariable("id") Integer id, Model model) {
-        Blog blog = blogMapper.findOneById(id);
+        Blog blog = blogService.findOneById(id);
         model.addAttribute("blog", blog);
         return "blog_view";
     }
@@ -35,7 +36,7 @@ public class BlogController extends BaseController {
         }else {
             ym_end = year+"-"+(month+1)+"-01";
         }
-        List<Blog> blogList = blogMapper.findBlogByYM(ym_start, ym_end);
+        List<Blog> blogList = blogService.findBlogByYM(ym_start, ym_end);
         model.addAttribute("blogList",blogList);
 
         /*return "themes/default/index";*/
@@ -50,7 +51,7 @@ public class BlogController extends BaseController {
         }
         String y_start = year + "";
         String y_end = (year + 1) + "";
-        List<Blog> blogList = blogMapper.findBlogByYM(y_start, y_end);
+        List<Blog> blogList = blogService.findBlogByYM(y_start, y_end);
         model.addAttribute("blogList", blogList);
         /*return "themes/default/index";*/
         return THEME+"/index";
@@ -59,6 +60,16 @@ public class BlogController extends BaseController {
     @RequestMapping("/blogs")
     public String sortAllBlog() {
         return "redirect:/blog-list";
+    }
+
+    //blog模糊查询
+    @RequestMapping("/search")
+    public String search(String key,Model model){
+
+        List<Blog> result = blogService.searchByKey(key);
+        model.addAttribute("key",key);
+        model.addAttribute("blogList",result);
+        return THEME+"/search_result";
     }
 
 }
