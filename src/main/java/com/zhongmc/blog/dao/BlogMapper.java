@@ -74,4 +74,8 @@ public interface BlogMapper {
     //更新博客和分类的关联
     @Update("update tbl_blog_tag set tagid=#{tagid} where blogid=#{blogid}")
     void updateBlogTagRecord(@Param("blogid") int blogid,@Param("tagid") int tagid);
+
+    //根据key模糊查询blog
+    @Select("select * from tbl_blog where title LIKE '%${key}%' or content LIKE '%${key}%' OR keywords LIKE '%${key}%'")
+    List<Blog> searchByKey(@Param("key") String key);
 }
