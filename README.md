@@ -12,8 +12,8 @@ websit：http://www.sealine.top/
 1. 博客列表
 2. 博客标签筛选
 3. 博客归档(按年月归档)，其实也允许按年、月进行归档：        
-按年归档：http://ip:port/blogs/year(http://guoguirong.top/blogs/2016)   
-按月归档：http://ip:port/blogs/year/month(http://guoguirong.top/blogs/2016/12)   
+按年归档：http://ip:port/blogs/year(http://sealine.top/blogs/2016)   
+按月归档：http://ip:port/blogs/year/month(http://sealine.top/blogs/2016/12)   
 4. 博客全站搜索
 5. 友情链接
  
