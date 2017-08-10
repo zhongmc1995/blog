@@ -7,21 +7,20 @@
 <header class="header bg-white" th:include="themes/default/nav::nav"></header>
 <div class="main-content common-page clearfix">
     <div class="categorys-item">
-        <div class="common-title">
-            分类
+        <div class="common-title" th:text="'关键字：'+${key}">
         </div>
         <div class="post-lists">
             <div class="post-lists-body">
-                <div th:each="tag:${tagList}" class="post-list-item">
+                <div th:each="blog:${blogList}" class="post-list-item">
                     <div class="post-list-item-container ">
                         <div class="item-label ">
                             <div class="item-title">
-                                <a th:href="@{'tag-blogs/'+${tag.id}}"  th:text="${tag.tagname}"></a>
+                                <a th:href="@{'blog/'+${blog.id}}"  th:text="${blog.title}"></a>
                             </div>
                             <div class="item-meta clearfix">
-                                <div class="item-meta-ico" th:classappend="${tag.tagicon}"
+                                <div class="item-meta-ico" th:classappend="${blog.coverpic}"
                                      style="background: url(user/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
-                                <div class="item-meta-date">创建于<span th:text="${#dates.format(tag.createTime,'yyyy-MM-dd')}"></span></div>
+                                <div class="item-meta-date">创建于<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}"></span></div>
                             </div>
                         </div>
                     </div>
@@ -29,7 +28,7 @@
                 <!--#end-->
             </div>
         </div>
-       <!-- #end-->
+        <!-- #end-->
     </div>
     <div class="lists-navigator clearfix"></div>
 </div>

@@ -58,5 +58,16 @@
                 scrollTop:0
             },500);
         });
+
+        $('#search-inp').keypress(function (e) {
+            var key = e.which; //e.which是按键的值
+            if (key == 13) {
+                var q = $(this).val();
+                console.log(q);
+                if (q && q != '') {
+                    window.location.href = '/search?key=' + q;
+                }
+            }
+        });
     </script>
 </footer>

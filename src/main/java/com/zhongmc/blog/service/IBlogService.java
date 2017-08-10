@@ -54,4 +54,7 @@ public interface IBlogService {
 
     //更新博客
     void updateBlog(Blog blog);
+
+    //模糊查询blog
+    List<Blog> searchByKey(String key);
 }

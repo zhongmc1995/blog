@@ -112,4 +112,9 @@ public class BlogServiceImpl implements IBlogService {
         blogMapper.updateBlog(blog);
         blogMapper.updateBlogTagRecord(blog.getId(),tagid);
     }
+
+    @Override
+    public List<Blog> searchByKey(String key) {
+        return blogMapper.searchByKey(key);
+    }
 }

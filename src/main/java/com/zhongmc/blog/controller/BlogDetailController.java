@@ -1,7 +1,6 @@
 package com.zhongmc.blog.controller;
 
-import com.zhongmc.blog.dao.BlogMapper;
-import com.zhongmc.blog.dao.TagMapper;
+
 import com.zhongmc.blog.domain.Blog;
 import com.zhongmc.blog.domain.Tag;
 import com.zhongmc.blog.service.IBlogService;
